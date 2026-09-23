@@ -3,7 +3,8 @@
  * (Noruega, Suécia, Dinamarca, Finlândia, Coreia do Sul e Alemanha).
  *
  * v (veredito): "sim" = procede | "parte" = procede em parte | "nao" = não procede
- * Checam-se narrativas, não pessoas. Cada lado tem o mesmo número de itens por página.
+ * Checam-se narrativas, não pessoas. Não há cota de acertos por lado: o veredito sai
+ * do dado da planilha e da comparação com os países de referência.
  * Números do Brasil: planilha (R$ reais de dez/2025 ou % do PIB).
  * Números internacionais: aproximados, fontes oficiais nacionais e OCDE, anos recentes (~2022–2024).
  */
@@ -52,6 +53,7 @@
       bol: [
         { v: "parte", frase: "O brasileiro paga imposto de país rico.", dado: "A carga total (~32%–33% do PIB) está perto da média da OCDE (~34%) e abaixo dos nórdicos (40%–47%). O problema real é o retorno em serviços e a regressividade, não o tamanho da carga." },
         { v: "sim", frase: "O governo Lula aumentou a carga de impostos.", dado: "A arrecadação federal subiu de 22,0% para 22,7% do PIB entre 2022 e 2025, com a volta de tributos sobre combustíveis e novas tributações (fundos exclusivos, offshores, apostas). Ressalva: a alta também ocorreu de 2019 a 2022 (20,8% → 22,0%)." },
+        { v: "parte", frase: "O governo Bolsonaro reduziu impostos.", dado: "Houve cortes (IPI, combustíveis em 2022), mas a arrecadação federal subiu de 20,8% para 22,0% do PIB entre 2019 e 2022, com inflação e commodities." },
       ],
       pt: [
         { v: "sim", frase: "Os ricos pagam pouco imposto no Brasil.", dado: "Até 2025 os dividendos eram isentos, e os gastos tributários somam 4,6% do PIB (R$ 587 bi), mais que saúde e educação federais. Todos os países de referência tributam dividendos." },
@@ -69,6 +71,7 @@
       bol: [
         { v: "nao", frase: "O problema é o Estado inchado, que gasta demais com servidores.", dado: "Na União, o gasto com pessoal caiu de 4,1% para 3,2% do PIB (2016–2025). O que cresce são previdência, benefícios e precatórios." },
         { v: "sim", frase: "O gasto do governo Lula disparou.", dado: "A despesa primária cresceu 16% reais de 2022 a 2025 (R$ 2,07 tri → R$ 2,39 tri), de 18,0% para 18,8% do PIB. Ressalva: o nível ainda é menor que o de 2016 (19,9%)." },
+        { v: "parte", frase: "O teto de gastos funcionou.", dado: "A despesa caiu de 19,9% para 18,0% do PIB (2016–2022), mas espremeu o investimento (discricionárias em 1,5%) e foi furado por emendas constitucionais em 2021–22. Nos países de referência, a regra de despesa convive com investimento protegido." },
       ],
       pt: [
         { v: "parte", frase: "O arcabouço fiscal garante a responsabilidade.", dado: "A despesa primária subiu 16% reais (18,0% → 18,8% do PIB) e o resultado de 2025 foi −R$ 62 bi. A meta só foi cumprida porque R$ 48,7 bi em despesas autorizadas foram descontados da conta (déficit considerado para a meta: ~R$ 13 bi)." },
@@ -85,6 +88,7 @@
     divida: {
       bol: [
         { v: "sim", frase: "A dívida disparou no governo Lula.", dado: "Entre 2022 e 2025, a dívida bruta subiu de 71,7% para 78,6% do PIB e a líquida de 56,1% para 65,2%, a maior alta entre os três períodos. Ressalva: a dívida líquida também subiu nos governos anteriores." },
+        { v: "parte", frase: "Bolsonaro reduziu a dívida.", dado: "A dívida bruta caiu de 74,4% para 71,7% do PIB entre 2019 e 2022, ajudada pela inflação alta, que infla o PIB nominal. A dívida líquida subiu (54,7% → 56,1%)." },
         { v: "parte", frase: "Os juros altos são culpa só do governo gastador.", dado: "O risco fiscal eleva o prêmio, mas os juros também seguem o ciclo da inflação: foram 5,0% do PIB com Selic de 4,5% (2019) e subiram com Selic de 13,75% ainda em 2022." },
       ],
       pt: [
@@ -102,6 +106,7 @@
     orcamento: {
       bol: [
         { v: "sim", frase: "O Estado brasileiro gasta muito e investe pouco.", dado: "Quase todo o orçamento é despesa obrigatória, e o investimento pago pela União oscilou entre 0,19% e 0,30% do PIB. Ressalva: o mínimo do período (R$ 22,4 bi reais) foi em 2022." },
+        { v: "nao", frase: "O governo Bolsonaro fez muitas obras com pouco dinheiro.", dado: "O investimento pago em 2022 foi o menor do período: R$ 22,4 bi reais (0,19% do PIB), contra ~4%–5% do PIB de investimento público nos países de referência." },
         { v: "parte", frase: "O Estado executa mal o orçamento por ineficiência e corrupção.", dado: "O orçamento total é executado em 87%–91%. A baixa execução está no investimento (37%–47%), cortado para cumprir metas: é escolha de política, não só ineficiência." },
       ],
       pt: [
@@ -173,6 +178,7 @@
         { v: "nao", frase: "O desemprego baixo de agora é maquiado.", dado: "A taxa vem da PNAD Contínua do IBGE, com a mesma metodologia desde 2012. As duas séries (anual e trimestral) mostram ~5,6%–5,9%." },
       ],
       pt: [
+        { v: "sim", frase: "O desemprego no governo Lula é o menor da série.", dado: "Taxa média de 5,6% em 2025, a menor desde o início da PNAD Contínua (2012), próxima à de Alemanha e Coreia e abaixo da de Suécia e Finlândia." },
         { v: "parte", frase: "O emprego recorde é fruto da política do governo.", dado: "Coincide com a valorização do salário mínimo, as transferências e o crédito, mas também com a recuperação pós-pandemia, a demografia e reformas anteriores. Os dados mostram o resultado (5,6%), não a causa isolada." },
         { v: "parte", frase: "A reforma trabalhista só precarizou o trabalho.", dado: "O emprego formal chegou a 48,5 milhões depois da reforma. Informalidade e \"pejotização\" não aparecem nesses dados e precisam de outra fonte." },
       ],

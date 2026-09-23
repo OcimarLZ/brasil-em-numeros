@@ -535,7 +535,7 @@
     if (!C) return null;
     const LD = window.LADOS;
     const box = el("div", { class: "checagem" });
-    box.insertAdjacentHTML("beforeend", `<p class="av-resumo">Frases que circulam no debate público, confrontadas com os números desta página. Checam-se narrativas, não pessoas: os dois lados acertam e erram. Os países de referência servem de espelho.</p>`);
+    box.insertAdjacentHTML("beforeend", `<p class="av-resumo">Frases que circulam no debate público, confrontadas com os números desta página e com o que fazem os países de referência. Checam-se narrativas, não pessoas. Critério do veredito: o dado. Não há equilíbrio forçado entre os lados.</p>`);
     const col = (k) =>
       `<section class="lado"><header><h3>${esc(LD[k].nome)}</h3><span class="visao-sub">${esc(LD[k].sub)}</span></header>` +
       C[k].map((it) => {
