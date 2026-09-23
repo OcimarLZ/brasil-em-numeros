@@ -80,7 +80,7 @@
       menu: "PIB e produção",
       titulo: "PIB e estrutura produtiva",
       desc: "Do PIB total ao valor adicionado de cada atividade econômica (IBGE, Contas Nacionais).",
-      trilha: ["PIB", "VAB + impostos", "Agro · Indústria · Serviços", "Atividades"],
+      trilha: ["PIB", "VAB + impostos", "Agro · Indústria · Comércio · Serviços", "Atividades"],
       niveis: [
         {
           titulo: "PIB total",
@@ -93,7 +93,7 @@
         },
         {
           titulo: "Grandes setores",
-          desc: "Agropecuária + indústria + serviços + impostos = PIB",
+          desc: "Agropecuária + indústria + comércio + demais serviços + impostos = PIB",
           graficos: [
             {
               titulo: "Composição do PIB",
@@ -102,18 +102,20 @@
               series: [
                 { r: ["pib", "2"], nome: "Agropecuária" },
                 { r: ["pib", "3"], nome: "Indústria" },
-                { r: ["pib", "4"], nome: "Serviços" },
+                { r: ["pib", "4.1"], nome: "Comércio" },
+                { calc: "resto", base: ["pib", "4"], menos: [["pib", "4.1"]], nome: "Demais serviços" },
                 { r: ["pib", "1.2"], nome: "Impostos líquidos" },
               ],
-              nota: "Impostos líquidos = impostos sobre produtos (ICMS, IPI, ISS, PIS/Cofins, imposto de importação) − subsídios. As atividades são medidas pelo que o produtor recebe (VAB); o PIB, pelo preço pago pelo comprador — a diferença é essa camada de impostos (~14% do PIB). Não é a carga tributária total: IR e contribuições sobre a folha já estão dentro do VAB.",
+              nota: "Comércio faz parte do setor de serviços do IBGE; aqui aparece separado dos demais serviços. Impostos líquidos = impostos sobre produtos (ICMS, IPI, ISS, PIS/Cofins, imposto de importação) − subsídios. As atividades são medidas pelo que o produtor recebe (VAB); o PIB, pelo preço pago pelo comprador — a diferença é essa camada de impostos (~14% do PIB). Não é a carga tributária total: IR e contribuições sobre a folha já estão dentro do VAB.",
             },
             {
               titulo: "Participação no PIB",
               sub: "VAB da atividade ÷ PIB",
               tipo: "linhas",
               series: [
-                { r: ["pib", "7c'"], nome: "Serviços" },
+                { r: ["pib", "7c'"], nome: "Serviços (total, inclui comércio)" },
                 { r: ["pib", "7b"], nome: "Indústria" },
+                { calc: "razao", num: ["pib", "4.1"], den: ["pib", "1"], nome: "Comércio" },
                 { r: ["pib", "7c"], nome: "Financeiro" },
                 { r: ["pib", "7a"], nome: "Agropecuária" },
               ],
