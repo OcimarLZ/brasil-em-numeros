@@ -630,6 +630,9 @@
     const atual = document.querySelector(`#menu a[data-id="${pg.id}"]`);
     if (atual) atual.scrollIntoView({ block: "nearest", inline: "nearest" });
     document.title = (pg.id === "visao" ? "" : pg.menu + " · ") + "Economia Brasileira em Números";
+    const rot = document.getElementById("menuRotulo");
+    if (rot) rot.textContent = pg.menu;
+    fechaMenu();
     window.scrollTo(0, manterScroll ? y : 0);
   }
 
@@ -637,6 +640,20 @@
   function montaMenu() {
     const nav = document.getElementById("menu");
     nav.innerHTML = window.PAGINAS.map((p) => `<a href="#${p.id}" data-id="${p.id}">${esc(p.menu)}</a>`).join("");
+  }
+
+  // menu em drawer vertical no celular: abre/fecha com o botão hamburguer
+  function fechaMenu() {
+    const nav = document.getElementById("menu"), btn = document.getElementById("btnMenu");
+    if (!nav || !btn) return;
+    nav.classList.remove("aberto");
+    btn.setAttribute("aria-expanded", "false");
+  }
+  function alternaMenu() {
+    const nav = document.getElementById("menu"), btn = document.getElementById("btnMenu");
+    const abrindo = !nav.classList.contains("aberto");
+    nav.classList.toggle("aberto", abrindo);
+    btn.setAttribute("aria-expanded", String(abrindo));
   }
 
   function marcaModo() {
@@ -652,6 +669,13 @@
     Chart.defaults.font.size = 12;
     montaMenu();
     marcaModo();
+
+    document.getElementById("btnMenu").addEventListener("click", (e) => { e.stopPropagation(); alternaMenu(); });
+    document.addEventListener("click", (e) => {
+      const nav = document.getElementById("menu");
+      if (nav.classList.contains("aberto") && !nav.contains(e.target) && e.target.id !== "btnMenu") fechaMenu();
+    });
+    document.addEventListener("keydown", (e) => { if (e.key === "Escape") fechaMenu(); });
 
     document.querySelectorAll(".seg button").forEach((b) =>
       b.addEventListener("click", () => {

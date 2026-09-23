@@ -88,8 +88,23 @@ button { font: inherit; color: inherit; }
   font-size: 13px; cursor: pointer; color: var(--ink-2); white-space: nowrap;
 }
 .seg button[aria-checked="true"] { background: var(--surface); color: var(--ink); box-shadow: 0 0 0 1px var(--border); font-weight: 600; }
-.tema { border: 1px solid var(--border); background: var(--surface); border-radius: 8px; width: 34px; height: 32px; cursor: pointer; display: grid; place-items: center; }
+.tema { border: 1px solid var(--border); background: var(--surface); border-radius: 8px; width: 34px; height: 32px; cursor: pointer; display: grid; place-items: center; flex: none; }
 .tema svg { width: 16px; height: 16px; fill: var(--ink-2); }
+
+/* botão hamburguer — só existe (visualmente) abaixo do breakpoint mobile */
+.btn-menu {
+  display: none; align-items: center; gap: 10px; width: 100%;
+  border: 0; background: transparent; cursor: pointer;
+  padding: 11px 16px; font-size: 14.5px; font-weight: 600; color: var(--ink);
+  text-align: left; border-top: 1px solid var(--border);
+}
+.btn-menu .ic-menu { width: 18px; height: 14px; flex: none; }
+.btn-menu .ic-menu rect { fill: var(--ink-2); }
+.btn-menu #menuRotulo { overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
+.btn-menu .ic-seta { width: 16px; height: 16px; margin-left: auto; flex: none; transition: transform .15s; }
+.btn-menu .ic-seta path { fill: none; stroke: var(--ink-3); stroke-width: 2; stroke-linecap: round; stroke-linejoin: round; }
+.btn-menu[aria-expanded="true"] .ic-seta { transform: rotate(180deg); }
+.btn-menu:hover { background: var(--surface-2); }
 
 .menu {
   max-width: 1280px; margin: 0 auto; padding: 0 16px;
@@ -103,6 +118,25 @@ button { font: inherit; color: inherit; }
 .menu a:hover { color: var(--ink); background: var(--surface-2); border-radius: 6px 6px 0 0; }
 .menu a[aria-current="page"] { color: var(--accent-ink); border-bottom-color: var(--accent); font-weight: 600; }
 
+/* menu vertical em drawer, ao estilo de app, para telas de celular */
+@media (max-width: 760px) {
+  .btn-menu { display: flex; }
+  .menu {
+    display: none; flex-direction: column; gap: 0;
+    max-height: calc(100vh - 116px); overflow-x: visible; overflow-y: auto;
+    padding: 4px 0 8px;
+  }
+  .menu.aberto { display: flex; }
+  .menu a {
+    padding: 13px 16px; font-size: 15px; white-space: normal;
+    border-bottom: 1px solid var(--grid); border-left: 3px solid transparent;
+  }
+  .menu a:last-child { border-bottom: 0; }
+  .menu a:hover { border-radius: 0; }
+  .menu a[aria-current="page"] { background: var(--accent-wash); border-left-color: var(--accent); border-bottom-color: var(--grid); }
+}
+@media (max-width: 480px) { .seg .det { display: none; } }
+
 /* ---------- conteúdo ---------- */
 main { max-width: 1280px; margin: 0 auto; padding: 20px 16px 40px; outline: none; }
 .cab-pagina { margin: 4px 0 18px; }
@@ -113,13 +147,13 @@ main { max-width: 1280px; margin: 0 auto; padding: 20px 16px 40px; outline: none
 .trilha i { font-style: normal; }
 
 .nivel { margin: 28px 0 0; }
-.nivel-cab { display: flex; align-items: baseline; gap: 10px; margin-bottom: 12px; border-bottom: 1px solid var(--border); padding-bottom: 6px; }
+.nivel-cab { display: flex; flex-wrap: wrap; align-items: baseline; gap: 6px 10px; margin-bottom: 12px; border-bottom: 1px solid var(--border); padding-bottom: 6px; }
 .nivel-cab .num {
   font-size: 12px; font-weight: 700; color: var(--accent-ink); background: var(--accent-wash);
   border-radius: 999px; padding: 2px 9px; white-space: nowrap;
 }
 .nivel-cab h2 { font-size: 18px; font-weight: 650; }
-.nivel-cab p { margin: 0; color: var(--ink-3); font-size: 13px; }
+.nivel-cab p { flex: 1 1 100%; margin: 0; color: var(--ink-3); font-size: 13px; }
 
 .grade-kpi { display: grid; grid-template-columns: repeat(auto-fill, minmax(230px, 1fr)); gap: 12px; }
 .kpi {

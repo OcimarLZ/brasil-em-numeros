@@ -10,6 +10,10 @@ Orçamento · Áreas sociais · Educação · Políticas afirmativas · Fomento 
 Seletor no topo: **Nominal**, **Real** (R$ de dez/2025, IPCA) ou **% do PIB**.
 Tabelas com detalhes por linha (fonte, observações) e download em CSV. Tema claro/escuro.
 
+Site responsivo. Em telas de celular (até 760px), o menu horizontal vira um botão
+"hamburguer" que abre um menu em lista vertical (estilo app), com a área atual em
+destaque; fecha ao escolher um item, ao tocar fora ou com Esc.
+
 Cada área traz uma **avaliação** com cards de impactos positivos, negativos e pontos de
 atenção, classificados por cinco critérios — sustentabilidade fiscal, autonomia externa,
 justiça social, bem-estar social e atratividade ao investimento — e uma lista de boas

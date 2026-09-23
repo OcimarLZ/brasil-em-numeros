@@ -22,7 +22,7 @@
       <div class="controles">
         <div class="seg" role="radiogroup" aria-label="Forma de apresentar os valores">
           <button type="button" role="radio" data-modo="nominal">Nominal</button>
-          <button type="button" role="radio" data-modo="real">Real (R$ dez/2025)</button>
+          <button type="button" role="radio" data-modo="real">Real<span class="det"> (R$ dez/2025)</span></button>
           <button type="button" role="radio" data-modo="pib">% do PIB</button>
         </div>
         <button type="button" class="tema" id="btnTema" aria-label="Alternar tema claro/escuro" title="Alternar tema">
@@ -30,6 +30,11 @@
         </button>
       </div>
     </div>
+    <button type="button" class="btn-menu" id="btnMenu" aria-expanded="false" aria-controls="menu" aria-label="Abrir menu de áreas">
+      <svg class="ic-menu" viewBox="0 0 20 16" aria-hidden="true"><rect width="20" height="2.4" rx="1.2"/><rect y="6.8" width="20" height="2.4" rx="1.2"/><rect y="13.6" width="20" height="2.4" rx="1.2"/></svg>
+      <span id="menuRotulo">Menu</span>
+      <svg class="ic-seta" viewBox="0 0 24 24" aria-hidden="true"><path d="M6 9l6 6 6-6"/></svg>
+    </button>
     <nav class="menu" id="menu" aria-label="Áreas"></nav>
   </header>
 
