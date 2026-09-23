@@ -500,6 +500,29 @@
     return box;
   }
 
+  // ---------------------------------------------------------------- duas leituras
+  function leituras(id) {
+    const L = (window.LEITURAS || {})[id];
+    if (!L) return null;
+    const V = window.VISOES;
+    const box = el("div", { class: "leituras" });
+    box.insertAdjacentHTML("beforeend", `<p class="av-resumo">Os mesmos números sustentam interpretações opostas. Abaixo, cada visão é apresentada com seus argumentos mais fortes — são tipos ideais simplificados; muitos economistas combinam elementos das duas.</p>`);
+    const col = (k) => {
+      const v = V[k], d = L[k];
+      return `<article class="visao visao-${k}">` +
+        `<header><span class="visao-ic" aria-hidden="true">${v.icone}</span><div><h3>${esc(v.nome)}</h3><span class="visao-sub">${esc(v.sub)}</span></div></header>` +
+        `<p class="visao-leitura">${esc(d.leitura)}</p>` +
+        `<h4>Dados que enfatiza</h4><ul>${d.destaques.map((x) => `<li>${esc(x)}</li>`).join("")}</ul>` +
+        `<h4>O que propõe</h4><ul>${d.propostas.map((x) => `<li>${esc(x)}</li>`).join("")}</ul>` +
+        `</article>`;
+    };
+    box.insertAdjacentHTML("beforeend", `<div class="grade-visoes">${col("lib")}${col("dev")}</div>`);
+    box.insertAdjacentHTML("beforeend",
+      `<div class="ponte"><div><span class="ponte-rot">≈ Onde concordam</span><p>${esc(L.consenso)}</p></div>` +
+      `<div><span class="ponte-rot">≠ Onde divergem</span><p>${esc(L.divergencia)}</p></div></div>`);
+    return box;
+  }
+
   // ---------------------------------------------------------------- páginas
   function limpaGraficos() {
     est.graficos.forEach((g) => g.destroy());
@@ -527,6 +550,12 @@
       const pos = pg.id === "visao" ? 1 : iTab >= 0 ? iTab : niveis.length;
       niveis.splice(pos, 0, nvAv);
     }
+    if ((window.LEITURAS || {})[pg.id]) {
+      const iAv = niveis.findIndex((n) => n.avaliacao);
+      const iTab = niveis.findIndex((n) => n.tabela);
+      const pos = iAv >= 0 ? iAv + 1 : iTab >= 0 ? iTab : niveis.length;
+      niveis.splice(pos, 0, { titulo: "Duas leituras dos mesmos dados", desc: "Visão liberal × visão desenvolvimentista", leituras: true });
+    }
 
     niveis.forEach((nv, i) => {
       const sec = el("section", { class: "nivel" });
@@ -546,6 +575,7 @@
       if (nv.tabela) sec.appendChild(tabela(nv.tabela));
       if (nv.html) sec.appendChild(HTML[nv.html]());
       if (nv.avaliacao) sec.appendChild(avaliacao(pg.id));
+      if (nv.leituras) sec.appendChild(leituras(pg.id));
       app.appendChild(sec);
     });
 

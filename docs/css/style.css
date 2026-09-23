@@ -245,3 +245,21 @@ tr.aberta .seta { transform: rotate(90deg); }
 .criterios > div { background: var(--surface); border: 1px solid var(--border); border-radius: var(--radius); padding: 10px 12px; }
 .criterios .tag { font-weight: 600; color: var(--ink); }
 .criterios p { margin: 6px 0 0; font-size: 12.5px; color: var(--ink-3); }
+
+/* ---------- duas leituras ---------- */
+.grade-visoes { display: grid; grid-template-columns: repeat(auto-fit, minmax(min(100%, 420px), 1fr)); gap: 12px; }
+.visao { background: var(--surface); border: 1px solid var(--border); border-top: 3px solid var(--vc); border-radius: var(--radius); padding: 14px 16px; }
+.visao-lib { --vc: var(--s1); }
+.visao-dev { --vc: var(--s2); }
+.visao header { display: flex; gap: 10px; align-items: center; margin-bottom: 8px; }
+.visao-ic { width: 30px; height: 30px; border-radius: 8px; background: var(--vc); color: #fff; display: grid; place-items: center; font-weight: 800; flex: none; }
+.visao h3 { font-size: 16px; font-weight: 700; }
+.visao-sub { font-size: 12px; color: var(--ink-3); }
+.visao-leitura { margin: 0 0 8px; font-size: 14px; color: var(--ink); }
+.visao h4 { font-size: 12px; text-transform: uppercase; letter-spacing: .04em; color: var(--ink-3); margin: 10px 0 4px; }
+.visao ul { margin: 0; padding-left: 18px; font-size: 13.5px; color: var(--ink-2); }
+.visao li { margin: 2px 0; }
+.ponte { display: grid; grid-template-columns: repeat(auto-fit, minmax(min(100%, 320px), 1fr)); gap: 12px; margin-top: 12px; }
+.ponte > div { background: var(--surface-2); border-radius: var(--radius); padding: 10px 14px; }
+.ponte-rot { font-size: 12px; font-weight: 700; color: var(--ink); text-transform: uppercase; letter-spacing: .03em; }
+.ponte p { margin: 4px 0 0; font-size: 13.5px; color: var(--ink-2); }

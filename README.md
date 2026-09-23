@@ -15,6 +15,11 @@ atenção, classificados por cinco critérios — sustentabilidade fiscal, auton
 justiça social, bem-estar social e atratividade ao investimento — e uma lista de boas
 práticas. Os textos ficam em `docs/js/avaliacoes.js` e podem ser editados livremente.
 
+Cada área também traz **"Duas leituras dos mesmos dados"**: como a visão liberal
+(pró-mercado, chamada de neoliberal por seus críticos) e a visão desenvolvimentista
+(ênfase em justiça social) interpretam os números, que dados enfatizam, o que propõem,
+onde concordam e onde divergem. Textos em `docs/js/leituras.js`.
+
 ## Estrutura
 
 ```
@@ -23,6 +28,7 @@ docs/                 ← o site (publicar esta pasta)
   css/style.css
   js/paginas.js       ← configuração das páginas (indicadores, gráficos, níveis)
   js/avaliacoes.js    ← cards de avaliação e boas práticas por página
+  js/leituras.js      ← leituras liberal × desenvolvimentista por página
   js/app.js           ← renderização (KPIs, gráficos Chart.js, tabelas)
   data/dados.js       ← gerado a partir da planilha
 scripts/gerar_dados.py
