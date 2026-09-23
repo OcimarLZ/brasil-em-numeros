@@ -1,0 +1,7 @@
+# Render Blueprint — site estático servido da pasta docs/
+services:
+  - type: web
+    name: economia-brasileira
+    runtime: static
+    buildCommand: ""
+    staticPublishPath: ./docs
