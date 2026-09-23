@@ -105,6 +105,7 @@
                 { r: ["pib", "4"], nome: "Serviços" },
                 { r: ["pib", "1.2"], nome: "Impostos líquidos" },
               ],
+              nota: "Impostos líquidos = impostos sobre produtos (ICMS, IPI, ISS, PIS/Cofins, imposto de importação) − subsídios. As atividades são medidas pelo que o produtor recebe (VAB); o PIB, pelo preço pago pelo comprador — a diferença é essa camada de impostos (~14% do PIB). Não é a carga tributária total: IR e contribuições sobre a folha já estão dentro do VAB.",
             },
             {
               titulo: "Participação no PIB",
