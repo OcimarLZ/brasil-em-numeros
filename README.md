@@ -20,6 +20,11 @@ Cada área também traz **"Duas leituras dos mesmos dados"**: como a visão libe
 (ênfase em justiça social) interpretam os números, que dados enfatizam, o que propõem,
 onde concordam e onde divergem. Textos em `docs/js/leituras.js`.
 
+E há **"Narrativas × dados"**: frases frequentes de bolsonaristas e petistas checadas
+contra os números (procede / procede em parte / não procede), com o mesmo número de itens
+para cada lado, mais um espelho nos países de referência (Noruega, Suécia, Dinamarca,
+Finlândia, Coreia do Sul e Alemanha) e uma lição para o Brasil. Textos em `docs/js/checagem.js`.
+
 ## Estrutura
 
 ```
@@ -29,6 +34,7 @@ docs/                 ← o site (publicar esta pasta)
   js/paginas.js       ← configuração das páginas (indicadores, gráficos, níveis)
   js/avaliacoes.js    ← cards de avaliação e boas práticas por página
   js/leituras.js      ← leituras liberal × desenvolvimentista por página
+  js/checagem.js      ← narrativas × dados e espelho internacional por página
   js/app.js           ← renderização (KPIs, gráficos Chart.js, tabelas)
   data/dados.js       ← gerado a partir da planilha
 scripts/gerar_dados.py

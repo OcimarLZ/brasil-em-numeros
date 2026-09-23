@@ -523,6 +523,35 @@
     return box;
   }
 
+  // ---------------------------------------------------------------- narrativas × dados
+  const VEREDITOS = {
+    sim: { rot: "Procede", icone: "✓", cls: "av-pos" },
+    parte: { rot: "Procede em parte", icone: "≈", cls: "av-at" },
+    nao: { rot: "Não procede", icone: "✕", cls: "av-neg" },
+  };
+
+  function checagem(id) {
+    const C = (window.CHECAGEM || {})[id];
+    if (!C) return null;
+    const LD = window.LADOS;
+    const box = el("div", { class: "checagem" });
+    box.insertAdjacentHTML("beforeend", `<p class="av-resumo">Frases que circulam no debate público, confrontadas com os números desta página. Checam-se narrativas, não pessoas: os dois lados acertam e erram. Os países de referência servem de espelho.</p>`);
+    const col = (k) =>
+      `<section class="lado"><header><h3>${esc(LD[k].nome)}</h3><span class="visao-sub">${esc(LD[k].sub)}</span></header>` +
+      C[k].map((it) => {
+        const v = VEREDITOS[it.v];
+        return `<article class="nar ${v.cls}"><span class="av-tipo"><i aria-hidden="true">${v.icone}</i>${v.rot}</span>` +
+          `<blockquote>“${esc(it.frase)}”</blockquote><p>${esc(it.dado)}</p></article>`;
+      }).join("") + `</section>`;
+    box.insertAdjacentHTML("beforeend", `<div class="grade-visoes">${col("bol")}${col("pt")}</div>`);
+    box.insertAdjacentHTML("beforeend",
+      `<div class="espelho"><h3>Espelho: Noruega, Suécia, Dinamarca, Finlândia, Coreia do Sul e Alemanha</h3>` +
+      `<ul>${C.espelho.map((e) => `<li><span class="tag">${esc(e.pais)}</span> ${esc(e.txt)}</li>`).join("")}</ul>` +
+      `<p class="licao"><b>Lição para o Brasil:</b> ${esc(C.licao)}</p></div>`);
+    box.insertAdjacentHTML("beforeend", `<p class="av-nota">Dados do Brasil: planilha deste site. Referências internacionais aproximadas (estatísticas nacionais e OCDE, anos recentes), para ordem de grandeza. Os períodos de governo são aproximados: 2019 e 2022 (Bolsonaro), 2025 (Lula III); 2016 inclui Dilma e Temer.</p>`);
+    return box;
+  }
+
   // ---------------------------------------------------------------- páginas
   function limpaGraficos() {
     est.graficos.forEach((g) => g.destroy());
@@ -556,6 +585,12 @@
       const pos = iAv >= 0 ? iAv + 1 : iTab >= 0 ? iTab : niveis.length;
       niveis.splice(pos, 0, { titulo: "Duas leituras dos mesmos dados", desc: "Visão liberal × visão desenvolvimentista", leituras: true });
     }
+    if ((window.CHECAGEM || {})[pg.id]) {
+      const iL = niveis.findIndex((n) => n.leituras);
+      const iTab = niveis.findIndex((n) => n.tabela);
+      const pos = iL >= 0 ? iL + 1 : iTab >= 0 ? iTab : niveis.length;
+      niveis.splice(pos, 0, { titulo: "Narrativas × dados", desc: "Onde bolsonaristas e petistas acertam e erram · espelho nos países de referência", checagem: true });
+    }
 
     niveis.forEach((nv, i) => {
       const sec = el("section", { class: "nivel" });
@@ -576,6 +611,7 @@
       if (nv.html) sec.appendChild(HTML[nv.html]());
       if (nv.avaliacao) sec.appendChild(avaliacao(pg.id));
       if (nv.leituras) sec.appendChild(leituras(pg.id));
+      if (nv.checagem) sec.appendChild(checagem(pg.id));
       app.appendChild(sec);
     });
 

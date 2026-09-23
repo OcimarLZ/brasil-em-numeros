@@ -263,3 +263,17 @@ tr.aberta .seta { transform: rotate(90deg); }
 .ponte > div { background: var(--surface-2); border-radius: var(--radius); padding: 10px 14px; }
 .ponte-rot { font-size: 12px; font-weight: 700; color: var(--ink); text-transform: uppercase; letter-spacing: .03em; }
 .ponte p { margin: 4px 0 0; font-size: 13.5px; color: var(--ink-2); }
+
+/* ---------- narrativas × dados ---------- */
+.lado { background: var(--surface); border: 1px solid var(--border); border-radius: var(--radius); padding: 14px 16px; display: flex; flex-direction: column; gap: 10px; }
+.lado header h3 { font-size: 16px; font-weight: 700; }
+.nar { border-left: 3px solid var(--st); padding: 2px 0 2px 12px; display: flex; flex-direction: column; gap: 4px; }
+.nar blockquote { margin: 0; font-size: 14.5px; font-weight: 600; color: var(--ink); }
+.nar p { margin: 0; font-size: 13.5px; color: var(--ink-2); }
+.espelho { margin-top: 12px; background: var(--surface); border: 1px solid var(--border); border-radius: var(--radius); padding: 12px 16px; }
+.espelho h3 { font-size: 14px; margin-bottom: 6px; }
+.espelho ul { list-style: none; margin: 0; padding: 0; display: grid; gap: 6px; }
+.espelho li { font-size: 13.5px; color: var(--ink-2); }
+.espelho .tag { font-weight: 600; color: var(--ink); margin-right: 4px; }
+.licao { margin: 10px 0 0; padding: 8px 12px; background: var(--accent-wash); border-radius: 8px; font-size: 13.5px; }
+.licao b { color: var(--accent-ink); }
