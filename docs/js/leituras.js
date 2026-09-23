@@ -119,6 +119,21 @@
       divergencia: "Nova reforma previdenciária × ampliação do financiamento dos serviços.",
     },
 
+    educacao: {
+      lib: {
+        leitura: "O Brasil já gasta em educação uma fatia do PIB (~5,5%, todas as esferas) parecida com a dos países ricos e colhe resultados muito piores. O problema é gestão, não falta de dinheiro, e o ensino superior recebe uma parte desproporcional.",
+        destaques: ["PISA 2022: Brasil com 379 pontos em matemática, OCDE com 472", "Educação federal +39% reais em 2025, ainda sem evidência de ganho de aprendizagem", "Fies custou R$ 10,9 bi em 2016 com alta inadimplência"],
+        propostas: ["Gestão por resultados, com metas e avaliação de escolas e redes", "Prioridade à educação básica e à primeira infância", "Cobrança no ensino superior público para quem pode pagar"],
+      },
+      dev: {
+        leitura: "A educação foi estrangulada pelo teto de gastos: a função Educação perdeu 15% reais entre 2016 e 2022. A recomposição e o Fundeb ampliado corrigem desigualdades, mas o gasto por aluno ainda é uma fração do de países ricos.",
+        destaques: ["Função Educação −15% reais (2016–2022) e +39% (2022–2025)", "Fundeb de 0,22% para 0,47% do PIB", "Bolsa Permanência +168% entre 2022 e 2025"],
+        propostas: ["Cumprir a meta do PNE de investir 10% do PIB em educação", "Valorização salarial e formação dos professores", "Universidade pública gratuita com assistência estudantil e expansão dos institutos federais"],
+      },
+      consenso: "Aprendizagem é a prioridade: alfabetização na idade certa, ensino técnico e o modelo do Ceará são defendidos pelos dois lados.",
+      divergencia: "Mais recursos × melhor gestão dos recursos existentes, e a cobrança de mensalidade no ensino superior público.",
+    },
+
     afirmativas: {
       lib: {
         leitura: "Transferências focalizadas como o Bolsa Família são bem avaliadas até por liberais: baixo custo por impacto. O risco é a expansão rápida sem fonte permanente, parte fora do orçamento e sem portas de saída.",

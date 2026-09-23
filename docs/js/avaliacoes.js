@@ -130,6 +130,25 @@
       ],
     },
 
+    educacao: {
+      resumo: "O gasto federal em educação caiu de 2016 a 2022 e foi recomposto em 2025. O Fundeb ampliado reforçou as redes mais pobres, mas o país ainda gasta pouco por aluno e aprende pouco.",
+      cards: [
+        { tipo: "pos", titulo: "Recomposição em 2025", crit: ["bem", "jus"], texto: "A função Educação paga subiu 39% em termos reais de 2022 a 2025 (R$ 125,5 bi → R$ 174,6 bi), de 1,09% para 1,37% do PIB." },
+        { tipo: "pos", titulo: "Fundeb mais redistributivo", crit: ["jus"], texto: "A complementação da União ao Fundeb foi de 0,22% para 0,47% do PIB (R$ 21 bi → R$ 60 bi reais), reforçando as redes de ensino mais pobres." },
+        { tipo: "pos", titulo: "Permanência no ensino superior", crit: ["jus"], texto: "A Bolsa Permanência (indígenas, quilombolas e baixa renda) subiu de R$ 152 mi para R$ 406 mi reais entre 2022 e 2025, e o PNAES voltou ao nível de 2016." },
+        { tipo: "neg", titulo: "Seis anos de encolhimento", crit: ["bem", "inv"], texto: "Entre 2016 e 2022 a função Educação perdeu 15% em termos reais (R$ 147,6 bi → R$ 125,5 bi), atravessando a pandemia com menos recursos." },
+        { tipo: "neg", titulo: "Merenda perdeu valor", crit: ["bem", "jus"], texto: "O repasse do PNAE caiu 23% em termos reais até 2022 (R$ 5,3 bi → R$ 4,1 bi) para cerca de 40 milhões de estudantes; em 2025 voltou a R$ 5,5 bi (orçado)." },
+        { tipo: "at", titulo: "Pé-de-Meia fora do orçamento", crit: ["fis"], texto: "Os R$ 13 bi previstos em 2025 são pagos por fundo fora da LOA, o que reduz a transparência; o impacto sobre a evasão ainda precisa de avaliação." },
+        { tipo: "at", titulo: "Fies encolheu", crit: ["fis", "jus"], texto: "O impacto primário caiu de R$ 10,9 bi (2016) para R$ 2,2 bi (2025): alívio fiscal, com menos acesso ao ensino superior privado pela via do crédito." },
+      ],
+      praticas: [
+        "Metas de aprendizagem (alfabetização na idade certa) com apoio técnico às redes, como no Ceará.",
+        "Financiamento por aluno com equidade entre redes ricas e pobres, e previsibilidade entre governos.",
+        "Carreira docente atrativa, com formação prática e seleção exigente.",
+        "Ampliar o ensino técnico integrado ao médio e avaliar programas como o Pé-de-Meia antes de expandi-los.",
+      ],
+    },
+
     afirmativas: {
       resumo: "O apoio social federal triplicou em proporção do PIB, com forte efeito redistributivo; o desafio é financiá-lo de forma permanente e garantir portas de saída.",
       cards: [

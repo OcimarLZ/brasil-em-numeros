@@ -324,16 +324,25 @@
   };
   const nivelCod = (cod) => Math.min(2, (cod.match(/\./g) || []).length);
 
+  // Uma tabela pode ser uma aba inteira ("pib") ou uma seleção de linhas de várias abas:
+  // { chave, titulo, subtitulo, linhas: [[aba, cod], ...] } — inclui todos os estágios do código.
+  function resolveTabela(item) {
+    if (typeof item === "string") return Object.assign({ chave: item }, D.abas[item]);
+    const linhas = [];
+    item.linhas.forEach(([aba, cod]) => D.abas[aba].linhas.forEach((l) => { if (l.cod === cod) linhas.push(l); }));
+    return { chave: item.chave, titulo: item.titulo, subtitulo: item.subtitulo || "", linhas, notas: item.notas || [] };
+  }
+
   function tabela(abas) {
     const frag = document.createDocumentFragment();
-    abas.forEach((aba) => {
-      const A = D.abas[aba];
+    abas.forEach((item) => {
+      const A = resolveTabela(item);
       const bloco = el("div", { class: "bloco-tab" });
       bloco.style.marginBottom = "16px";
       const acoes = el("div", { class: "tab-acoes" });
       acoes.innerHTML = `<p><b>${esc(A.titulo)}</b> — ${esc(A.subtitulo)} Clique numa linha para ver fonte e observações.</p>`;
       const btn = el("button", { class: "btn", type: "button" }, "Baixar CSV");
-      btn.addEventListener("click", () => baixaCSV(aba));
+      btn.addEventListener("click", () => baixaCSV(A));
       acoes.appendChild(btn);
       bloco.appendChild(acoes);
 
@@ -401,8 +410,7 @@
     return c.unid;
   }
 
-  function baixaCSV(aba) {
-    const A = D.abas[aba];
+  function baixaCSV(A) {
     const q = (s) => '"' + String(s == null ? "" : s).replace(/"/g, '""') + '"';
     const linhas = [["Código", "Indicador", "Conceito/estágio", "Unidade", ...ANOS.map(String), "Classificação", "Observações"].map(q).join(";")];
     A.linhas.forEach((l) => {
@@ -410,7 +418,7 @@
       linhas.push([l.cod, l.nome, l.estagio, descUnidTab(c), ...c.vals.map((x, i) => (x == null ? l.falta[i] : String(+x.toFixed(6)).replace(".", ","))), l.classe, l.obs].map(q).join(";"));
     });
     const blob = new Blob(["﻿" + linhas.join("\r\n")], { type: "text/csv;charset=utf-8" });
-    const a = el("a", { href: URL.createObjectURL(blob), download: `${aba}_${est.modo}.csv` });
+    const a = el("a", { href: URL.createObjectURL(blob), download: `${A.chave}_${est.modo}.csv` });
     document.body.appendChild(a); a.click(); a.remove();
   }
 

@@ -5,7 +5,7 @@ Site estático que apresenta a economia e as contas públicas do Brasil em
 Cada área desce do dado agregado (PIB, arrecadação, dívida) até o segmento.
 
 **Áreas (menu):** Visão geral · PIB e produção · Receitas · Despesas · Dívida e juros ·
-Orçamento · Áreas sociais · Políticas afirmativas · Crédito e fomento · Emprego · Setor externo · Investimento · Fontes.
+Orçamento · Áreas sociais · Educação · Políticas afirmativas · Fomento · Emprego · Setor externo · Investimento · Fontes.
 
 Seletor no topo: **Nominal**, **Real** (R$ de dez/2025, IPCA) ou **% do PIB**.
 Tabelas com detalhes por linha (fonte, observações) e download em CSV. Tema claro/escuro.

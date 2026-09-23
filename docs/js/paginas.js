@@ -522,6 +522,116 @@
     },
 
     {
+      id: "educacao",
+      menu: "Educação",
+      titulo: "Educação: todos os gastos federais em um só lugar",
+      desc: "Consolida os dados de educação espalhados pelas demais áreas: função Educação do orçamento, Fundeb, alimentação escolar, Pé-de-Meia, assistência estudantil, Fies e ProUni.",
+      trilha: ["Função Educação", "Educação básica", "Ensino superior e técnico", "Crédito e renúncias"],
+      niveis: [
+        {
+          titulo: "Gasto federal em educação",
+          kpis: [
+            { r: ["social", "27–28", "Pago"], nome: "Educação (função 12) – pago" },
+            { r: ["despesas", "11.5"], nome: "Complementação da União ao Fundeb" },
+            { r: ["afirmativas", "PA.10"], nome: "Alimentação escolar (PNAE) – repasse" },
+            { r: ["afirmativas", "PA.8"], nome: "Pé-de-Meia (previsto, fora da LOA)" },
+          ],
+          graficos: [
+            {
+              titulo: "Função Educação por estágio",
+              sub: "Da dotação ao pagamento",
+              tipo: "barras",
+              rampa: true,
+              series: estagios("social", "27–28"),
+              nota: "\"Pago\" vem do Portal da Transparência e inclui restos a pagar; por isso pode superar a dotação.",
+            },
+            {
+              titulo: "Esforço federal em educação (% do PIB)",
+              sub: "Valores pagos",
+              tipo: "linhas",
+              series: [
+                { calc: "razao", num: ["social", "27–28", "Pago"], den: ["pib", "1"], nome: "Função Educação" },
+                { calc: "razao", num: ["despesas", "11.5"], den: ["pib", "1"], nome: "Complementação ao Fundeb" },
+              ],
+              nota: "A complementação ao Fundeb faz parte da função Educação: as linhas não se somam.",
+            },
+          ],
+        },
+        {
+          titulo: "Educação básica",
+          desc: "Transferências da União a estados e municípios e apoio ao aluno",
+          graficos: [
+            {
+              titulo: "Fundeb, alimentação escolar e Pé-de-Meia",
+              tipo: "barras",
+              larga: true,
+              series: [
+                { r: ["despesas", "11.5"], nome: "Complementação ao Fundeb" },
+                { r: ["afirmativas", "PA.8"], nome: "Pé-de-Meia (previsto)" },
+                { r: ["afirmativas", "PA.10"], nome: "PNAE – repasse federal" },
+              ],
+              nota: "Pé-de-Meia criado em 2024 e pago por fundo fora do orçamento. PNAE 2025 = orçamento estimado.",
+            },
+          ],
+        },
+        {
+          titulo: "Ensino superior e técnico",
+          desc: "Permanência de estudantes vulneráveis",
+          graficos: [
+            {
+              titulo: "Assistência estudantil – valor pago",
+              sub: "R$ milhões · pago no exercício",
+              tipo: "categorias",
+              series: [
+                { r: ["afirmativas", "PA.3", "Pago"], nome: "PNAES (universidades)" },
+                { r: ["afirmativas", "PA.4", "Pago"], nome: "Institutos federais (EPT)" },
+                { r: ["afirmativas", "PA.5", "Pago"], nome: "Bolsa Permanência" },
+              ],
+            },
+            {
+              titulo: "Bolsa Permanência por estágio",
+              sub: "R$ milhões · indígenas, quilombolas e baixa renda",
+              tipo: "barras",
+              rampa: true,
+              series: estagiosPA("afirmativas", "PA.5"),
+            },
+          ],
+        },
+        {
+          titulo: "Crédito educativo e renúncias",
+          desc: "Fies e ProUni: custo fiscal, não gasto direto",
+          graficos: [
+            {
+              titulo: "Fies e ProUni",
+              tipo: "barras",
+              larga: true,
+              series: [
+                { r: ["afirmativas", "PA.11"], nome: "Fies – impacto primário" },
+                { r: ["afirmativas", "PA.11.1"], nome: "Fies – subsídio implícito" },
+                { r: ["afirmativas", "PA.12"], nome: "ProUni – renúncia tributária" },
+              ],
+              nota: "Conceitos distintos, não somar. Subsídio do Fies só localizado para 2022. ProUni 2025 é projeção.",
+            },
+          ],
+        },
+        {
+          titulo: "Tabela completa",
+          tabela: [{
+            chave: "educacao",
+            titulo: "Educação – dados consolidados",
+            subtitulo: "Linhas reunidas das abas Saúde, educação e previdência; Despesas públicas; e Políticas afirmativas e apoio.",
+            linhas: [
+              ["social", "27–28"], ["despesas", "11.5"],
+              ["afirmativas", "PA.10"], ["afirmativas", "PA.10.1"], ["afirmativas", "PA.8"],
+              ["afirmativas", "PA.3"], ["afirmativas", "PA.4"], ["afirmativas", "PA.5"],
+              ["afirmativas", "PA.11"], ["afirmativas", "PA.11.1"], ["afirmativas", "PA.12"],
+            ],
+          }],
+        },
+      ],
+    },
+
+    {
       id: "afirmativas",
       menu: "Políticas afirmativas",
       titulo: "Políticas afirmativas e de apoio social",
@@ -621,7 +731,7 @@
 
     {
       id: "fomento",
-      menu: "Crédito e fomento",
+      menu: "Fomento",
       titulo: "BNDES, Plano Safra e P&D",
       desc: "Crédito público fora do orçamento (BNDES), crédito rural anunciado (Plano Safra) e esforço em pesquisa e desenvolvimento.",
       trilha: ["BNDES", "Plano Safra", "P&D"],

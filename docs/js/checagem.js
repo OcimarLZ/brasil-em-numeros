@@ -138,6 +138,26 @@
       licao: "Serviços universais de qualidade e previdência ajustada à demografia: as duas agendas se complementam.",
     },
 
+    educacao: {
+      bol: [
+        { v: "parte", frase: "O problema da educação não é dinheiro, é gestão.", dado: "Em % do PIB (~5,5%, todas as esferas) o Brasil gasta perto da média da OCDE e dos países de referência. Mas por aluno o gasto é uma fração do deles, e a União cortou 15% reais entre 2016 e 2022. As duas coisas importam." },
+        { v: "parte", frase: "A queda na educação entre 2019 e 2022 foi por causa da pandemia, não de cortes.", dado: "A queda real começou antes: de R$ 147,6 bi (2016) para R$ 131,5 bi (2019), e continuou até R$ 125,5 bi (2022). A pandemia não explica a tendência." },
+        { v: "parte", frase: "O governo Bolsonaro fortaleceu a educação básica com o novo Fundeb.", dado: "A complementação subiu de 0,21% para 0,33% do PIB entre 2019 e 2022. Mas o novo Fundeb (EC 108/2020) foi aprovado por iniciativa do Congresso, que ampliou a proposta inicial do governo." },
+      ],
+      pt: [
+        { v: "sim", frase: "O governo Lula recompôs o orçamento da educação.", dado: "A função Educação paga subiu 39% reais de 2022 a 2025 (R$ 125,5 bi → R$ 174,6 bi), e a Bolsa Permanência +168%." },
+        { v: "parte", frase: "O Brasil investe pouco em educação.", dado: "Procede por aluno e na União até 2022. Mas em % do PIB, somando todas as esferas (~5,5%), o Brasil está perto da média da OCDE (~5%). O maior problema é aprendizagem: 379 pontos no PISA de matemática contra 472 na OCDE." },
+        { v: "parte", frase: "O Pé-de-Meia está resolvendo a evasão no ensino médio.", dado: "São R$ 13 bi previstos em 2025, pagos por fundo fora do orçamento e questionados pelo TCU. Os dados desta planilha não medem a evasão; o efeito ainda precisa ser avaliado." },
+      ],
+      espelho: [
+        { pais: "Finlândia", txt: "Professores com mestrado, carreira disputada e autonomia; gasto público em educação de ~5,5%–6% do PIB." },
+        { pais: "Coreia do Sul", txt: "PISA de matemática de 527 pontos (o maior dos países de referência), com forte cobrança por resultados e grande esforço das famílias." },
+        { pais: "Alemanha", txt: "Cerca de metade dos jovens no ensino técnico dual (escola + empresa)." },
+        { pais: "Nórdicos", txt: "Ensino superior público gratuito com bolsas de manutenção para os alunos, financiado por impostos altos e progressivos; gasto de ~6%–7% do PIB." },
+      ],
+      licao: "Nos países de referência, o dinheiro vem junto com metas de aprendizagem, professor valorizado e ensino técnico forte. O Brasil precisa das duas coisas: mais recursos por aluno e cobrança por resultado.",
+    },
+
     afirmativas: {
       bol: [
         { v: "nao", frase: "Bolsa Família é compra de voto e incentiva a não trabalhar.", dado: "O emprego formal cresceu 5,8 milhões de vagas (2022–2025) enquanto o programa se expandia, e o próprio governo Bolsonaro ampliou o benefício em 2022. Estudos no Brasil não encontram desestímulo relevante ao trabalho." },

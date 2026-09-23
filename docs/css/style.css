@@ -99,6 +99,7 @@ button { font: inherit; color: inherit; }
   flex: none; padding: 9px 9px 10px; text-decoration: none; color: var(--ink-2);
   font-size: 13.5px; border-bottom: 2px solid transparent; white-space: nowrap;
 }
+@media (min-width: 900px) { .menu { flex-wrap: wrap; overflow-x: visible; } }
 .menu a:hover { color: var(--ink); background: var(--surface-2); border-radius: 6px 6px 0 0; }
 .menu a[aria-current="page"] { color: var(--accent-ink); border-bottom-color: var(--accent); font-weight: 600; }
 
