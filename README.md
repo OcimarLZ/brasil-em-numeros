@@ -8,10 +8,17 @@ números — matrículas, rendimento, Enem, Sisu) e `Corrupcao_2016_2019_2022_20
 (percepção e apuração — ver ressalva sobre essa aba mais abaixo). Cada área desce do
 dado agregado (PIB, arrecadação, dívida) até o segmento.
 
-**Áreas (menu):** Visão geral · PIB e produção · Receitas · Despesas · Dívida e juros ·
-Orçamento · Pacto federativo · Áreas sociais · Segurança pública · Educação ·
-Políticas afirmativas · Corrupção · Fato ou Fake · Fomento · Emprego · Setor externo ·
-Investimento · Fontes.
+**Áreas (menu):** Como usar · Visão geral · PIB e produção · Receitas · Despesas ·
+Dívida e juros · Orçamento · Pacto federativo · Áreas sociais · Segurança pública ·
+Educação · Políticas afirmativas · Corrupção · Fato ou Fake · Fomento · Emprego ·
+Setor externo · Investimento · Fontes.
+
+A primeira área, **"Como usar"**, é um guia rápido (não vem de planilha): explica o que
+o site mostra, como funcionam o seletor Nominal/Real/%PIB, as tabelas e o menu, a
+estrutura padrão de cada página, e termina numa grade de "dicas" — uma pergunta por
+página, cada uma com um link direto para a área correspondente (`#id`). É a página que
+abre por padrão para quem chega no site sem um link específico. Textos em
+`docs/js/guia.js`.
 
 Seletor no topo: **Nominal**, **Real** (R$ de dez/2025, IPCA) ou **% do PIB**.
 Tabelas com detalhes por linha (fonte, observações) e download em CSV. Tema claro/escuro.

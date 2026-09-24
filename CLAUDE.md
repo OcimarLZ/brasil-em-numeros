@@ -69,12 +69,26 @@ comparable 4-year series for corruption) and don't backfill its "não localizado
 with recalled/unsourced numbers.
 
 **Script load order matters** (see `docs/index.html`): `dados.js` → `paginas.js` →
-`avaliacoes.js` → `leituras.js` → `checagem.js` → `beneficiarios.js` → `fatooufake.js` →
-`app.js`. Each of the first six just assigns a `window.*` global inside an IIFE; `app.js`
-is the only one with behavior and expects all the others to already exist on `window`.
+`guia.js` → `avaliacoes.js` → `leituras.js` → `checagem.js` → `beneficiarios.js` →
+`fatooufake.js` → `app.js`. Each of the first seven just assigns a `window.*` global
+inside an IIFE; `app.js` is the only one with behavior and expects all the others to
+already exist on `window`.
+
+**Two pages opt out of the indicator/spreadsheet model entirely** — `guia` (id `guia`,
+menu "Como usar", `docs/js/guia.js` → `window.GUIA`) and `fato_ou_fake` (see below) —
+both are pure `html`-block pages (no `kpis`/`graficos`/`tabela`, no `DADOS.abas` entry,
+no avaliação/beneficiarios/leituras/checagem block). `guia` is also the site's default
+route: `rota()` in `app.js` falls back to `#guia`, not `#visao`, when the URL has no
+hash — a first-time visitor lands on the guide, not the data. Its "Para onde ir" level
+is a grid of tip cards (`window.GUIA.grupos[].dicas[]`, rendered by `secaoDicas()` in
+`app.js`) that double as a sitemap: each links straight to a page via a plain `<a
+href="#pageid">`, which the existing `hashchange` listener already handles with no
+extra wiring. When adding a new page, add one tip here too so it's reachable from the
+guide, and keep the "18 páginas"/list-of-areas prose in `guia.js` and `README.md` in
+sync with the actual page count.
 
 **Content model — five parallel data-driven files keyed by page id**, merged at render
-time, plus one page that opts out of the data model entirely:
+time, plus the two pages above that opt out of it entirely:
 - `docs/js/paginas.js` (`window.PAGINAS`) — the actual page/level/chart/KPI structure.
   Each page has an `id`, `menu` label, and `niveis` (levels, rendered top-to-bottom:
   biggest aggregate first, detail last). A level can carry `kpis`, `graficos`, `tabela`,

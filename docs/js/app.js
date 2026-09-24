@@ -481,6 +481,57 @@
     fato_lula: () => secaoFato("lula"),
     fato_flavio: () => secaoFato("flavio"),
     fato_viral: () => secaoFato("viral"),
+    guia_sobre() {
+      const d = el("div");
+      d.innerHTML =
+        `<p>Este site compara a economia e as contas públicas do Brasil em quatro momentos — ` +
+        `<b>2016</b>, <b>2019</b>, <b>2022</b> e <b>2025</b>, aproximadamente os mandatos Temer, ` +
+        `Bolsonaro e Lula III (2016 inclui o governo Dilma até maio) — a partir de três planilhas: ` +
+        `uma fiscal (PIB, receitas, despesas, dívida), uma complementar (LOA por órgão, segurança, ` +
+        `pacto federativo, educação em números) e uma de corrupção.</p>` +
+        `<p>São 18 páginas ao todo. Cada uma desce do dado maior para o mais detalhado: começa nos ` +
+        `números que cabem numa manchete (o PIB, a dívida, a arrecadação) e termina no programa, ` +
+        `no tributo ou na estatística específica — sempre com a fonte de cada número, uma linha ` +
+        `abaixo.</p>`;
+      return d;
+    },
+    guia_leitura() {
+      const d = el("div", { class: "sintese" });
+      d.insertAdjacentHTML("beforeend",
+        `<article><h3>Nominal, Real ou % do PIB</h3><p>O seletor no topo da tela muda todos os ` +
+        `valores em reais do site de uma vez. <b>Nominal</b> mostra o valor do próprio ano; ` +
+        `<b>Real</b> corrige pela inflação (IPCA) para reais de dezembro de 2025, o jeito correto ` +
+        `de comparar anos diferentes; <b>% do PIB</b> mostra o peso de cada valor no tamanho da ` +
+        `economia daquele ano.</p></article>` +
+        `<article><h3>Tabelas e fontes</h3><p>Toda página termina numa tabela completa. Clique numa ` +
+        `linha para abrir a fonte de cada ano e as observações metodológicas; o botão "Baixar CSV" ` +
+        `exporta a tabela inteira. Os pontos coloridos (<a href="#fontes">ver legenda completa</a>) ` +
+        `mostram se o dado é oficial, uma estimativa, uma aproximação ou não foi localizado.</p></article>` +
+        `<article><h3>Menu e celular</h3><p>No computador, o menu fica na horizontal, no topo. No ` +
+        `celular (telas até 760px), ele vira um botão "≡" que abre a lista de áreas na vertical.</p></article>` +
+        `<article><h3>Tema claro e escuro</h3><p>O ícone da lua/sol no canto superior direito alterna ` +
+        `entre os dois temas; a escolha fica salva no navegador.</p></article>`);
+      return d;
+    },
+    guia_estrutura() {
+      const d = el("div");
+      d.innerHTML =
+        `<p>Quase toda página segue a mesma ordem, do agregado ao detalhe:</p>` +
+        `<ol class="notas" style="font-size:14px;color:var(--ink-2)">` +
+        `<li><b>Indicadores e gráficos</b>, em níveis — do número mais geral ao mais específico.</li>` +
+        `<li><b>Avaliação</b>: cards de impacto positivo, negativo e pontos de atenção, com boas práticas.</li>` +
+        `<li><b>A quem interessa o que está ocorrendo</b>: quem ganha e quem perde com aqueles números.</li>` +
+        `<li><b>Duas leituras dos mesmos dados</b>: como a visão liberal e a desenvolvimentista interpretam os números.</li>` +
+        `<li><b>Narrativas × dados</b>: frases do debate público checadas contra os dados, com espelho em outros países.</li>` +
+        `<li><b>Tabela completa</b>, com fonte e observação de cada linha.</li>` +
+        `</ol>` +
+        `<p class="aviso"><b>Duas exceções:</b> a página <a href="#corrupcao">Corrupção</a> tem menos dado disponível ` +
+        `e avisa isso logo no início. A página <a href="#fato_ou_fake">Fato ou Fake</a> é bem diferente das outras: ` +
+        `não vem de planilha, e o veredito de cada item é de um verificador externo (Aos Fatos, Agência Lupa, ` +
+        `Comprova) — nunca um veredito deste site sobre algo que ainda não foi checado por ninguém.</p>`;
+      return d;
+    },
+    guia_dicas: () => secaoDicas(),
   };
 
   // Uma seção de "Fato ou Fake": cards com alegação, veredito do verificador e link.
@@ -505,6 +556,26 @@
         `</article>`);
     });
     box.appendChild(grade);
+    return box;
+  }
+
+  // Grade de "dicas" do guia: pergunta + resposta + link direto para a página.
+  function secaoDicas() {
+    const G = window.GUIA || { grupos: [] };
+    const box = el("div");
+    G.grupos.forEach((g) => {
+      box.insertAdjacentHTML("beforeend", `<h3 class="dicas-grupo">${esc(g.titulo)}</h3>`);
+      const grade = el("div", { class: "grade-av" });
+      g.dicas.forEach((d) => {
+        grade.insertAdjacentHTML("beforeend",
+          `<article class="av dica">` +
+          `<h4>${esc(d.pergunta)}</h4>` +
+          `<p>${esc(d.resposta)}</p>` +
+          `<a class="dica-link" href="#${esc(d.pagina)}">Ver em ${esc(d.label)} →</a>` +
+          `</article>`);
+      });
+      box.appendChild(grade);
+    });
     return box;
   }
 
@@ -758,7 +829,7 @@
       if (!document.documentElement.dataset.theme) renderiza(est.pagina, true);
     });
 
-    const rota = () => renderiza((location.hash || "#visao").slice(1));
+    const rota = () => renderiza((location.hash || "#guia").slice(1));
     window.addEventListener("hashchange", rota);
     rota();
   }

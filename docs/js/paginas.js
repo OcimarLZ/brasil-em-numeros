@@ -24,6 +24,19 @@
 
   window.PAGINAS = [
     {
+      id: "guia",
+      menu: "Como usar",
+      titulo: "Como usar este site",
+      desc: "Um guia rápido antes de mergulhar nos números: o que este site mostra, como ler os valores e para onde ir primeiro.",
+      niveis: [
+        { titulo: "O que é este site", html: "guia_sobre" },
+        { titulo: "Como ler os números", html: "guia_leitura" },
+        { titulo: "O que tem em cada página", html: "guia_estrutura" },
+        { titulo: "Para onde ir", desc: "Uma pergunta por página — clique para ir direto", html: "guia_dicas" },
+      ],
+    },
+
+    {
       id: "visao",
       menu: "Visão geral",
       titulo: "A economia brasileira em quatro momentos",
