@@ -13,11 +13,13 @@ import openpyxl
 
 RAIZ = pathlib.Path(__file__).resolve().parents[1]
 XLSX = RAIZ / "Brasil_2016_2019_2022_2025.xlsx"
+XLSX_QUANT = RAIZ / "Relatorio_quantitativo_2016_2019_2022_2025.xlsx"
+XLSX_CORRUP = RAIZ / "Corrupcao_2016_2019_2022_2025.xlsx"
 SAIDA = RAIZ / "docs" / "data" / "dados.js"
 
 ANOS = [2016, 2019, 2022, 2025]
 
-# Abas temáticas: chave usada no site -> nome da aba
+# Abas temáticas: chave usada no site -> nome da aba (workbook fiscal principal)
 ABAS = {
     "pib": "PIB setorial",
     "receitas": "Receitas públicas",
@@ -32,6 +34,24 @@ ABAS = {
     "externo": "Comércio exterior",
     "privado": "Invest. privados e industriais",
     "infra": "Infraestrutura federal",
+}
+
+# Idem, workbook complementar (indicadores não monetários + LOA por órgão/GND).
+# Mesmo formato de linha (Código/Indicador/Conceito/Âmbito/Unidade/Brasil {ano}/
+# Variação.../Fonte {ano}/Classificação/Observações) — reaproveita aba_tematica().
+ABAS_QUANT = {
+    "loa_org": "LOA detalhada (órgão, GND)",
+    "seg_dados": "Segurança pública",
+    "federativo": "Pacto federativo",
+    "edu_matriculas": "Educação - matrículas",
+    "enem_sisu": "Enem e Sisu",
+}
+
+# Idem, workbook de corrupção (pesquisa própria via web, ver build_corrupcao.py).
+# Dataset deliberadamente esparso: não há uma única fonte oficial com série anual
+# comparável de corrupção para os 4 anos — ver notas metodológicas da própria aba.
+ABAS_CORRUP = {
+    "corrupcao": "Corrupção",
 }
 
 # Correções de erros da planilha: no script de origem as chaves "imp" e "adm"
@@ -97,7 +117,10 @@ def resumo(wb):
     return {"titulo": titulo, "subtitulo": sub, "sintese": sintese, "legenda": legenda}
 
 
-def aba_tematica(wb, chave, nome):
+def aba_tematica(wb, chave, nome, pct_0a100=False):
+    """pct_0a100: no workbook complementar, células de unidade "%" vêm na escala
+    0–100 (ex.: 97.0 = 97%); no workbook fiscal principal, "%" vem em fração
+    (0–1). Normaliza para fração, convenção usada em todo o site."""
     ws = wb[nome]
     rows = list(ws.iter_rows(values_only=True))
     cab = [txt(c) for c in rows[2]]
@@ -117,6 +140,8 @@ def aba_tematica(wb, chave, nome):
             continue
         valores = [r[idx[f"Brasil {a}"]] for a in ANOS]
         v = [num(x) for x in valores]
+        if pct_0a100 and txt(r[4]) == "%":
+            v = [None if x is None else x / 100 for x in v]
         faltas = [txt(x) if num(x) is None else "" for x in valores]
         fontes = [txt(r[idx[f"Fonte {a}"]]) for a in ANOS]
         corr = CORRECOES.get((chave, c0))
@@ -154,7 +179,7 @@ def fontes(wb):
         if c0.startswith("Regras metodológicas"):
             modo = "regras"
             continue
-        if modo == "fontes" and re.match(r"^S\d+", c0):
+        if modo == "fontes" and re.match(r"^[A-Z]{1,2}\d+$", c0):
             lista.append({
                 "id": c0, "titulo": txt(r[1]), "instituicao": txt(r[2]), "url": txt(r[3]),
                 "publicacao": txt(r[4]), "referencia": txt(r[5]), "indicador": txt(r[6]),
@@ -169,11 +194,24 @@ def fontes(wb):
 
 def main():
     wb = openpyxl.load_workbook(XLSX, data_only=True)
+    wbq = openpyxl.load_workbook(XLSX_QUANT, data_only=True)
+    wbc = openpyxl.load_workbook(XLSX_CORRUP, data_only=True)
+
+    abas = {k: aba_tematica(wb, k, n) for k, n in ABAS.items()}
+    abas.update({k: aba_tematica(wbq, k, n, pct_0a100=True) for k, n in ABAS_QUANT.items()})
+    abas.update({k: aba_tematica(wbc, k, n, pct_0a100=True) for k, n in ABAS_CORRUP.items()})
+
+    met = fontes(wb)
+    for extra in (fontes(wbq), fontes(wbc)):
+        met["fontes"] += extra["fontes"]
+        met["tentativas"] += extra["tentativas"]
+    # "regras" dos workbooks complementares não existem (mesma metodologia do principal).
+
     dados = {
         "parametros": parametros(wb),
         "resumo": resumo(wb),
-        "abas": {k: aba_tematica(wb, k, n) for k, n in ABAS.items()},
-        "metodologia": fontes(wb),
+        "abas": abas,
+        "metodologia": met,
     }
     SAIDA.parent.mkdir(parents=True, exist_ok=True)
     corpo = json.dumps(dados, ensure_ascii=False, separators=(",", ":"))

@@ -104,6 +104,21 @@
       divergencia: "Quem deve liderar o investimento em infraestrutura: o Estado ou o setor privado.",
     },
 
+    federativo: {
+      lib: {
+        leitura: "Estados e municípios já recebem uma fatia crescente e garantida da receita federal (FPE/FPM cresceram bem acima do PIB) — o problema não é falta de repasse, é a gestão local desses recursos, muitas vezes sem contrapartida de eficiência.",
+        destaques: ["FPE+FPM de 2,39% para 2,84% do PIB", "SUS fundo a fundo +65% real", "Sem exigência de resultado atrelada aos repasses"],
+        propostas: ["Condicionar parte dos repasses a indicadores de resultado (educação, saúde)", "Transparência e accountability municipal", "Evitar que repasses federais substituam esforço fiscal próprio dos entes"],
+      },
+      dev: {
+        leitura: "O pacto federativo segue desigual: FPE/FPM ajudam, mas municípios pequenos e pobres dependem demais deles, e áreas como assistência social nem têm dado consolidado — sinal de que a União trata regiões pobres como segunda prioridade.",
+        destaques: ["Glosas cortam bilhões do repasse ao SUS todo ano", "FNAS/SUAS sem série pública", "PNAE perdeu valor real até 2022"],
+        propostas: ["Ampliar e estabilizar o Fundeb e o SUS fundo a fundo", "Publicar e fortalecer os repasses de assistência social", "Fundos de equalização para reduzir desigualdade entre municípios"],
+      },
+      consenso: "É preciso mais transparência: nem o total das transferências, nem as de assistência social, têm série pública clara.",
+      divergencia: "Repasse condicionado a resultado × repasse garantido como direito constitucional.",
+    },
+
     social: {
       lib: {
         leitura: "O Brasil gasta muito com o social; o problema é eficiência. A previdência consome recursos de país rico e envelhecido, e mais dinheiro sem gestão não melhora resultados.",
@@ -117,6 +132,21 @@
       },
       consenso: "Os resultados (aprendizagem, saúde) precisam ser medidos e publicados.",
       divergencia: "Nova reforma previdenciária × ampliação do financiamento dos serviços.",
+    },
+
+    seguranca_pub: {
+      lib: {
+        leitura: "A queda da violência letal coincide com posturas mais duras: leis mais rígidas, armamento e apoio à ação policial. Onde a polícia age com mais liberdade, o crime organizado recua.",
+        destaques: ["MVI caiu em todos os 4 anos (30,2 → 19,1 por 100 mil)", "Roubos caíram 66% (taxa)", "Latrocínio caiu 70%"],
+        propostas: ["Endurecimento penal para crimes graves e reincidência", "Mais autonomia e respaldo jurídico para a ação policial", "Inteligência e ostensividade contra o crime organizado"],
+      },
+      dev: {
+        leitura: "A queda geral esconde um dado grave: letalidade policial e feminicídio sobem justamente onde faltam políticas específicas (proteção à mulher, controle do uso da força), não repressão genérica.",
+        destaques: ["Letalidade policial (MDIP) +56%", "Feminicídio mais que dobrou (+153%)", "Efetivo policial nem é medido nacionalmente"],
+        propostas: ["Políticas específicas de proteção à mulher (Lei Maria da Penha, casas-abrigo)", "Protocolos e controle do uso da força policial", "Investimento em prevenção social, não só repressão"],
+      },
+      consenso: "A queda de homicídio doloso e roubo é real e deve ser sustentada; faltam dados básicos (efetivo policial) para avaliar políticas com rigor.",
+      divergencia: "O que explica a queda: repressão mais dura × outros fatores (demografia, mercado de trabalho, políticas locais) — e o que fazer com a letalidade policial em alta.",
     },
 
     educacao: {
@@ -147,6 +177,21 @@
       },
       consenso: "O Bolsa Família é eficiente e deve ser avaliado continuamente.",
       divergencia: "Escala e universalização × focalização estrita e custo fiscal.",
+    },
+
+    corrupcao: {
+      lib: {
+        leitura: "A queda nas prisões e operações revela a politização do combate à corrupção no ciclo anterior (Lava Jato como instrumento seletivo) mais do que um recuo real na fiscalização — o problema de fundo é a insegurança jurídica que espantou investimento, não a falta de prisões.",
+        destaques: ["Prisões por corrupção caíram 90% (2019→2022)", "CPI estagnado em 35 pontos nos dois extremos medidos", "Preocupação popular caiu de 32% para 5%–8%"],
+        propostas: ["Segurança jurídica e previsibilidade para investimento, não operações midiáticas recorrentes", "Fortalecer controles preventivos (compliance, transparência) em vez de repressão pontual", "Evitar uso político de investigações e de prisões preventivas prolongadas"],
+      },
+      dev: {
+        leitura: "A queda abrupta nas prisões e operações após 2019 é sinal de enfraquecimento dos mecanismos de controle (mudanças nas regras de prisão, interferências na PF) — não de menos corrupção, já que o índice internacional de percepção não melhorou.",
+        destaques: ["CPI parado em 35: nenhuma melhora percebida por especialistas", "Operações da CGU: pico de 96 em 2020, historicamente baixas depois (37 em 2023)", "Cofres públicos perdem com menos recuperação de ativos"],
+        propostas: ["Reforçar a autonomia da Polícia Federal e da CGU", "Recompor regras de prisão que sustentaram o pico de resultados de 2015 a 2019", "Ampliar transparência sobre sanções (CEIS/CNEP) e recuperação de ativos"],
+      },
+      consenso: "O CPI parado em 35 pontos mostra que nenhum dos períodos resolveu o problema percebido pelos especialistas internacionais.",
+      divergencia: "Se a queda em prisões e operações é correção de excessos do ciclo anterior ou enfraquecimento do combate à corrupção.",
     },
 
     fomento: {

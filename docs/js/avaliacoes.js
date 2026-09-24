@@ -106,11 +106,29 @@
         { tipo: "neg", titulo: "Investimento mínimo", crit: ["inv"], texto: "O investimento pago pela União oscilou entre 0,19% e 0,30% do PIB — insuficiente até para repor a depreciação da infraestrutura federal." },
         { tipo: "neg", titulo: "Baixa execução do investimento", crit: ["inv", "fis"], texto: "Só 37% a 47% da dotação inicial de investimentos é paga no ano, contra 87%–91% da despesa total: o investimento é a variável de ajuste." },
         { tipo: "at", titulo: "Orçamento empurrado", crit: ["fis"], texto: "O investimento pago incluindo restos a pagar (RTN, R$ 69,9 bi em 2025) é quase o dobro do pago no exercício: obras se arrastam de um ano para o outro." },
+        { tipo: "neg", titulo: "Rolagem da dívida domina o orçamento", crit: ["fis"], texto: "A rolagem/refinanciamento da dívida mobiliária chegou a R$ 2,16 tri reais em 2022 (18,7% do PIB) e R$ 1,66 tri em 2025 (13,0% do PIB) — muito maior que qualquer despesa primária isolada, incluindo pessoal (R$ 443 bi) e investimentos (R$ 80 bi) somados." },
       ],
       praticas: [
         "Carteira de investimentos plurianual, priorizada por análise custo-benefício.",
         "Reduzir a fragmentação do orçamento em pequenas ações sem escala.",
         "Transparência sobre restos a pagar e obras paralisadas.",
+      ],
+    },
+
+    federativo: {
+      resumo: "As transferências a estados e municípios cresceram em termos reais, tanto na partilha de receita (FPE/FPM) quanto nos repasses de saúde e educação, mas faltam dados para medir o total do pacto federativo.",
+      cards: [
+        { tipo: "pos", titulo: "Partilha de receita em alta", crit: ["jus", "bem"], texto: "FPE + FPM somaram R$ 362 bi reais em 2025 (2,84% do PIB), ante R$ 232 bi (2,39% do PIB) em 2016: mais recursos livres para estados e municípios, sobretudo os mais dependentes dessas transferências." },
+        { tipo: "pos", titulo: "SUS fundo a fundo mais forte", crit: ["bem"], texto: "Os repasses líquidos do SUS a estados e municípios cresceram 65% em termos reais (R$ 99,6 bi → R$ 164,7 bi), de 1,03% para 1,29% do PIB." },
+        { tipo: "neg", titulo: "Glosas reduzem o repasse à saúde", crit: ["bem", "fis"], texto: "O desconto entre o repasse bruto e o líquido do SUS soma bilhões todo ano (R$ 2,8 bi em 2016, R$ 5,3 bi em 2025): recursos anunciados que não chegam de fato aos municípios." },
+        { tipo: "neg", titulo: "Assistência social invisível nos dados", crit: ["jus", "bem"], texto: "Não foi localizada uma série de repasses do FNAS/SUAS a estados e municípios para os 4 anos — o pacto federativo na assistência social é o menos transparente das três áreas centrais (saúde, educação, assistência)." },
+        { tipo: "at", titulo: "PNAE perde valor real", crit: ["bem"], texto: "O repasse do PNAE caiu de R$ 5,3 bi para R$ 4,1 bi reais entre 2016 e 2022 (−23%), enquanto a complementação ao Fundeb quase quadruplicou no mesmo período — prioridades diferentes dentro da própria educação." },
+      ],
+      praticas: [
+        "Publicar uma série consolidada do total de transferências da União a estados e municípios, por tipo e por área.",
+        "Reduzir as glosas do SUS fundo a fundo ou explicar publicamente seus critérios.",
+        "Tratar FNAS/SUAS com a mesma transparência de SUS e Fundeb.",
+        "Regras de partilha estáveis, para dar previsibilidade orçamentária aos entes subnacionais.",
       ],
     },
 
@@ -130,6 +148,25 @@
       ],
     },
 
+    seguranca_pub: {
+      resumo: "A violência letal caiu de forma consistente nos quatro anos, mas o avanço é desigual entre tipos de crime: feminicídio e letalidade policial sobem enquanto homicídio e latrocínio caem.",
+      cards: [
+        { tipo: "pos", titulo: "Queda sustentada da violência letal", crit: ["bem"], texto: "A taxa de Mortes Violentas Intencionais caiu de 30,2 para 19,1 por 100 mil habitantes entre 2016 e 2025 (−37%), com queda em todos os quatro anos da série." },
+        { tipo: "pos", titulo: "Homicídio doloso em queda acentuada", crit: ["bem"], texto: "O homicídio doloso caiu 39% em número absoluto (54.053 → 32.914) e a taxa disponível caiu de 18,8 para 15,4 por 100 mil habitantes (2019→2025)." },
+        { tipo: "pos", titulo: "Latrocínio e roubo em queda", crit: ["bem"], texto: "Latrocínio caiu 70% (2.666 → 807 casos) e a taxa de roubos caiu 66% (837,9 → 286,3 por 100 mil habitantes)." },
+        { tipo: "neg", titulo: "Feminicídio mais que dobrou", crit: ["jus", "bem"], texto: "Os casos de feminicídio subiram de 621 para 1.571 entre 2016 e 2025 (+153%) — na direção oposta de quase todos os outros indicadores de violência letal." },
+        { tipo: "neg", titulo: "Letalidade policial em alta", crit: ["jus", "bem"], texto: "Mortes decorrentes de intervenção policial subiram 56% (4.223 → 6.602), mesmo com a queda geral da criminalidade violenta." },
+        { tipo: "neg", titulo: "Estupro em alta constante", crit: ["jus", "bem"], texto: "Os registros de estupro subiram 70% (49.497 → 84.388) e a taxa foi de 24,0 para 39,5 por 100 mil habitantes — pode refletir tanto mais casos quanto mais denúncias." },
+        { tipo: "at", titulo: "Dados básicos não existem", crit: ["fis", "bem"], texto: "O efetivo policial total do país (civil + militar) não foi localizado para nenhum dos quatro anos — um indicador básico de capacidade de Estado que deveria ser público e comparável." },
+      ],
+      praticas: [
+        "Política nacional de dados de segurança, com séries públicas, comparáveis e sem quebras (o próprio FBSP precisa revisar retroativamente).",
+        "Foco específico em feminicídio e letalidade policial, as duas séries em alta.",
+        "Protocolos de uso da força e accountability para reduzir mortes por intervenção policial.",
+        "Investimento em prevenção e rede de proteção à mulher, dado o crescimento do feminicídio.",
+      ],
+    },
+
     educacao: {
       resumo: "O gasto federal em educação caiu de 2016 a 2022 e foi recomposto em 2025. O Fundeb ampliado reforçou as redes mais pobres, mas o país ainda gasta pouco por aluno e aprende pouco.",
       cards: [
@@ -140,6 +177,9 @@
         { tipo: "neg", titulo: "Merenda perdeu valor", crit: ["bem", "jus"], texto: "O repasse do PNAE caiu 23% em termos reais até 2022 (R$ 5,3 bi → R$ 4,1 bi) para cerca de 40 milhões de estudantes; em 2025 voltou a R$ 5,5 bi (orçado)." },
         { tipo: "at", titulo: "Pé-de-Meia fora do orçamento", crit: ["fis"], texto: "Os R$ 13 bi previstos em 2025 são pagos por fundo fora da LOA, o que reduz a transparência; o impacto sobre a evasão ainda precisa de avaliação." },
         { tipo: "at", titulo: "Fies encolheu", crit: ["fis", "jus"], texto: "O impacto primário caiu de R$ 10,9 bi (2016) para R$ 2,2 bi (2025): alívio fiscal, com menos acesso ao ensino superior privado pela via do crédito." },
+        { tipo: "pos", titulo: "Aprovação subiu na educação básica", crit: ["bem"], texto: "A taxa de aprovação do ensino fundamental na rede pública foi de 94,3% (2019) para 97,0% (2025), e o abandono no ensino médio caiu de 6,5% para 2,5% (2022→2025)." },
+        { tipo: "neg", titulo: "Matrículas na educação básica encolhem", crit: ["bem"], texto: "As matrículas na educação básica caíram de 48,8 milhões (2016) para 46,0 milhões (2025), acompanhando a queda demográfica da população em idade escolar; o número de escolas também recuou (184,1 mil → 178,8 mil)." },
+        { tipo: "at", titulo: "Enem perdeu quase metade dos inscritos", crit: ["bem", "jus"], texto: "Os inscritos no Enem caíram de 8,6 milhões (2016) para 3,5–4,8 milhões (2022–2025), o menor patamar da série — o exame é a principal porta de entrada ao ensino superior público e ao Fies/ProUni." },
       ],
       praticas: [
         "Metas de aprendizagem (alfabetização na idade certa) com apoio técnico às redes, como no Ceará.",
@@ -164,6 +204,22 @@
         "Cadastro Único atualizado e condicionalidades de saúde e educação.",
         "Portas de saída: qualificação, intermediação de emprego e regra de proteção na transição.",
         "Avaliação de impacto independente e orçamento com marcador de raça e gênero.",
+      ],
+    },
+
+    corrupcao: {
+      resumo: "Os poucos indicadores comparáveis mostram um quadro ambíguo: o índice internacional de percepção não mudou, a preocupação popular caiu bastante, e a apuração de casos despencou entre 2019 e 2022 — sem dado para saber se voltou a subir depois.",
+      cards: [
+        { tipo: "neg", titulo: "CPI não melhorou", crit: ["jus", "inv"], texto: "O Índice de Percepção de Corrupção (Transparency International) ficou em exatamente 35 pontos tanto em 2019 quanto em 2025 — nenhuma melhora percebida por especialistas internacionais nesses dois pontos medidos." },
+        { tipo: "at", titulo: "Preocupação popular caiu mais que a percepção de especialistas", crit: ["jus"], texto: "Enquanto o CPI ficou parado, o percentual de brasileiros que cita corrupção como principal problema caiu de 32% (2016) para 5%–8% (2022–2025) no Datafolha — sinal de que o tema perdeu prioridade no debate público mais do que necessariamente melhorou." },
+        { tipo: "neg", titulo: "Apuração despencou entre 2019 e 2022", crit: ["fis", "jus"], texto: "Prisões em operações da PF por corrupção caíram de 421 para 42 (−90%) ainda no governo Bolsonaro; faltam dados para saber se voltou a subir em 2025." },
+        { tipo: "at", titulo: "Dados de corrupção são raros e fragmentados", crit: ["fis"], texto: "Ao contrário de quase todo o resto deste site, não há uma única fonte oficial com série anual comparável — cada indicador vem de uma fonte diferente, com metade dos anos sem dado." },
+      ],
+      praticas: [
+        "Publicar séries oficiais contínuas e comparáveis de operações, sanções e recuperação de ativos (hoje fragmentadas entre CGU, PF, TCU e AGU).",
+        "Separar claramente percepção (pesquisas de opinião, índices internacionais) de resultado (operações, condenações, valores recuperados) ao avaliar política de combate à corrupção.",
+        "Preservar a autonomia investigativa e as regras que sustentaram o pico de operações e prisões entre 2015 e 2019.",
+        "Investigar por que a preocupação popular caiu tão mais rápido que os indicadores objetivos, antes de declarar vitória contra a corrupção.",
       ],
     },
 

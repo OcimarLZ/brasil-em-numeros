@@ -47,6 +47,8 @@
     if (u === "pessoas") return "pessoas";
     if (u.startsWith("milhões de ")) return "mipessoas";
     if (u === "R$ por mês") return "brlmes";
+    if (u === "número") return "num";
+    if (u === "por 100 mil hab.") return "taxa100k";
     return "outro";
   }
 
@@ -98,6 +100,11 @@
         return [f(x, 0), ""];
       case "mipessoas": return [f(x, 1), "mi"];
       case "brlmes": return ["R$" + NBSP + f(x, 0), "/mês"];
+      case "num":
+        if (a >= 1e6) return [f(x / 1e6, a >= 1e7 ? 1 : 2), "mi"];
+        if (a >= 1e3) return [f(x / 1e3, 0), "mil"];
+        return [f(x, 0), ""];
+      case "taxa100k": return [f(x, 1), ""];
       default: return [f(x, casas(x)), c.unid || ""];
     }
   }
@@ -107,7 +114,8 @@
   function fmtTab(x, c) {
     if (x == null) return null;
     if (c.tipo === "pct") return f(x, Math.abs(x) < 2 ? 2 : 1);
-    if (c.tipo === "pessoas") return f(x, 0);
+    if (c.tipo === "pessoas" || c.tipo === "num") return f(x, 0);
+    if (c.tipo === "taxa100k") return f(x, 1);
     const a = Math.abs(x);
     return f(x, a >= 100 ? 1 : a >= 1 ? 2 : 3);
   }
@@ -469,7 +477,36 @@
     regras() {
       return el("ol", { class: "notas", style: "font-size:14px;color:var(--ink-2)" }, D.metodologia.regras.map((r) => `<li>${esc(r)}</li>`).join(""));
     },
+    fato_urnas: () => secaoFato("urnas"),
+    fato_lula: () => secaoFato("lula"),
+    fato_flavio: () => secaoFato("flavio"),
+    fato_viral: () => secaoFato("viral"),
   };
+
+  // Uma seção de "Fato ou Fake": cards com alegação, veredito do verificador e link.
+  // Vereditos vêm de agências de checagem externas (Aos Fatos, Lupa, Comprova) — não
+  // é um veredito próprio deste site, por isso o rótulo é o que o verificador usou.
+  function secaoFato(id) {
+    const sec = (window.FATOOUFAKE || { secoes: [] }).secoes.find((s) => s.id === id);
+    if (!sec) return el("div");
+    const CLS = { Falso: "av-neg", Enganoso: "av-neg", Verdadeiro: "av-pos", Exagerado: "av-at", Impreciso: "av-at", "Falta contexto": "av-at" };
+    const box = el("div");
+    if (sec.desc) box.insertAdjacentHTML("beforeend", `<p class="av-resumo">${esc(sec.desc)}</p>`);
+    const grade = el("div", { class: "grade-av" });
+    sec.itens.forEach((it) => {
+      const cls = CLS[it.veredito] || "av-at";
+      grade.insertAdjacentHTML("beforeend",
+        `<article class="av ${cls}">` +
+        `<span class="av-tipo"><i aria-hidden="true">${it.veredito === "Verdadeiro" ? "✓" : it.veredito === "Falso" || it.veredito === "Enganoso" ? "✕" : "!"}</i>${esc(it.veredito)}</span>` +
+        `<blockquote class="fato-alegacao">“${esc(it.alegacao)}”</blockquote>` +
+        `<p class="fato-contexto">${esc(it.contexto)}</p>` +
+        `<p>${esc(it.explicacao)}</p>` +
+        `<p class="fato-verificado">Verificado por ${it.verificadores.map((v) => `<a href="${esc(v.url)}" target="_blank" rel="noopener">${esc(v.nome)}</a>`).join(" e ")}</p>` +
+        `</article>`);
+    });
+    box.appendChild(grade);
+    return box;
+  }
 
   // ---------------------------------------------------------------- avaliação
   const TIPOS_AV = {
@@ -531,6 +568,22 @@
     return box;
   }
 
+  // ---------------------------------------------------------------- quem ganha, quem perde
+  function beneficiarios(id) {
+    const B = (window.BENEFICIARIOS || {})[id];
+    if (!B) return null;
+    const box = el("div", { class: "beneficiarios" });
+    box.insertAdjacentHTML("beforeend", `<p class="av-resumo">${esc(B.resumo)}</p>`);
+    const col = (rot, icone, cls, itens) =>
+      `<section class="lado-bp ${cls}"><h3>${icone} ${esc(rot)}</h3><ul>` +
+      itens.map((it) => `<li><b>${esc(it.grupo)}</b><span>${esc(it.texto)}</span></li>`).join("") +
+      `</ul></section>`;
+    box.insertAdjacentHTML("beforeend",
+      `<div class="grade-bp">${col("Quem ganha", "▲", "bp-ganha", B.ganham)}${col("Quem perde", "▼", "bp-perde", B.perdem)}</div>`);
+    box.insertAdjacentHTML("beforeend", `<p class="av-nota">Análise de grupos afetados (stakeholders), não de mérito — o mesmo efeito pode ser considerado bom ou ruim conforme o ponto de vista de quem ganha ou perde com ele. Sinaliza tendências a partir dos dados desta página; não é um estudo de incidência distributiva.</p>`);
+    return box;
+  }
+
   // ---------------------------------------------------------------- narrativas × dados
   const VEREDITOS = {
     sim: { rot: "Procede", icone: "✓", cls: "av-pos" },
@@ -587,10 +640,17 @@
       const pos = pg.id === "visao" ? 1 : iTab >= 0 ? iTab : niveis.length;
       niveis.splice(pos, 0, nvAv);
     }
-    if ((window.LEITURAS || {})[pg.id]) {
+    if ((window.BENEFICIARIOS || {})[pg.id]) {
       const iAv = niveis.findIndex((n) => n.avaliacao);
       const iTab = niveis.findIndex((n) => n.tabela);
       const pos = iAv >= 0 ? iAv + 1 : iTab >= 0 ? iTab : niveis.length;
+      niveis.splice(pos, 0, { titulo: "A quem interessa o que está ocorrendo", desc: "Quem são os beneficiados e os prejudicados por trás dos números", beneficiarios: true });
+    }
+    if ((window.LEITURAS || {})[pg.id]) {
+      const iBen = niveis.findIndex((n) => n.beneficiarios);
+      const iAv = niveis.findIndex((n) => n.avaliacao);
+      const iTab = niveis.findIndex((n) => n.tabela);
+      const pos = iBen >= 0 ? iBen + 1 : iAv >= 0 ? iAv + 1 : iTab >= 0 ? iTab : niveis.length;
       niveis.splice(pos, 0, { titulo: "Duas leituras dos mesmos dados", desc: "Visão liberal × visão desenvolvimentista", leituras: true });
     }
     if ((window.CHECAGEM || {})[pg.id]) {
@@ -618,6 +678,7 @@
       if (nv.tabela) sec.appendChild(tabela(nv.tabela));
       if (nv.html) sec.appendChild(HTML[nv.html]());
       if (nv.avaliacao) sec.appendChild(avaliacao(pg.id));
+      if (nv.beneficiarios) sec.appendChild(beneficiarios(pg.id));
       if (nv.leituras) sec.appendChild(leituras(pg.id));
       if (nv.checagem) sec.appendChild(checagem(pg.id));
       app.appendChild(sec);

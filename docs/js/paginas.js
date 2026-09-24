@@ -397,7 +397,7 @@
       menu: "Orçamento",
       titulo: "LOA e execução orçamentária",
       desc: "Do que a lei orçamentária prevê ao que é efetivamente pago: dotação → empenho → liquidação → pagamento.",
-      trilha: ["Despesa total", "Estágios", "Investimentos"],
+      trilha: ["Despesa total", "Estágios", "Investimentos", "Por órgão"],
       niveis: [
         {
           titulo: "Orçamento total da União",
@@ -446,7 +446,112 @@
             },
           ],
         },
-        { titulo: "Tabela completa", tabela: ["loa"] },
+        {
+          titulo: "Por órgão e tipo de despesa",
+          desc: "Complementa a visão por função com o recorte por órgão/Poder e por item da despesa. Atenção: a base muda por ano (2016 = pago; 2019 = LOA aprovada/autógrafo; 2022/2025 = despesas primárias do Raio X do Orçamento) — ver \"Conceito\" em cada linha da tabela.",
+          kpis: [
+            { r: ["loa_org", "0"], nome: "LOA aprovada (Orç. Fiscal+Seguridade, com refinanciamento)" },
+            { r: ["loa_org", "1"], nome: "Ministério da Saúde" },
+            { r: ["loa_org", "2"], nome: "Ministério da Educação" },
+            { r: ["loa_org", "14"], nome: "Transferências a estados e municípios (via LOA)", link: "federativo" },
+          ],
+          graficos: [
+            {
+              titulo: "Despesa por órgão",
+              sub: "LOA aprovada/despesas primárias, conforme o ano",
+              tipo: "categorias",
+              larga: true,
+              series: [
+                { r: ["loa_org", "1"], nome: "Saúde" },
+                { r: ["loa_org", "2"], nome: "Educação" },
+                { r: ["loa_org", "4"], nome: "Previdência/Assistência Social" },
+                { r: ["loa_org", "3"], nome: "Defesa" },
+                { r: ["loa_org", "5"], nome: "Justiça e Segurança Pública (órgão)" },
+              ],
+              nota: "Órgão responsável por previdência/assistência mudou de nome entre governos (ver observações na tabela).",
+            },
+            {
+              titulo: "Pessoal, juros e investimentos",
+              tipo: "barras",
+              series: [
+                { r: ["loa_org", "9"], nome: "Pessoal" },
+                { r: ["loa_org", "10"], nome: "Juros" },
+                { r: ["loa_org", "13"], nome: "Investimentos (GND4)" },
+              ],
+              nota: "Itens não somam o total da despesa (critérios e coberturas distintos entre si).",
+            },
+            {
+              titulo: "Amortização, rolagem e transferências",
+              sub: "Serviço da dívida e transferências a estados/municípios via LOA",
+              tipo: "barras",
+              series: [
+                { r: ["loa_org", "11"], nome: "Amortização" },
+                { r: ["loa_org", "12"], nome: "Rolagem/refinanciamento" },
+                { r: ["loa_org", "14"], nome: "Transferências a estados/municípios" },
+              ],
+              nota: "Rolagem/refinanciamento é rolagem de dívida (não é despesa primária) — por isso em gráfico à parte.",
+            },
+          ],
+        },
+        { titulo: "Tabela completa", tabela: ["loa", "loa_org"] },
+      ],
+    },
+
+    {
+      id: "federativo",
+      menu: "Federativo",
+      titulo: "Pacto federativo: repasses da União a estados e municípios",
+      desc: "Quanto a União transfere a estados e municípios: partilha de receita (FPE/FPM) à parte das transferências específicas por área (saúde, educação).",
+      trilha: ["FPE + FPM", "Transferências por área", "Saúde (SUS)", "Educação"],
+      niveis: [
+        {
+          titulo: "Transferências constitucionais",
+          desc: "Partilha de receita — sem classificação por área, não somar às transferências por área abaixo",
+          kpis: [
+            { r: ["federativo", "2.1"], nome: "FPE + FPM (total)" },
+            { r: ["federativo", "1"], nome: "FPE – Fundo de Participação dos Estados" },
+            { r: ["federativo", "2"], nome: "FPM – Fundo de Participação dos Municípios" },
+            { r: ["despesas", "11.5"], nome: "Complementação da União ao Fundeb" },
+          ],
+          graficos: [
+            {
+              titulo: "FPE e FPM",
+              sub: "Valor pago no ano, líquido da retenção de 20% ao Fundeb",
+              tipo: "empilhado",
+              series: [
+                { r: ["federativo", "1"], nome: "FPE (estados/DF)" },
+                { r: ["federativo", "2"], nome: "FPM (municípios)" },
+              ],
+            },
+          ],
+        },
+        {
+          titulo: "Transferências por grande área",
+          desc: "Saúde (SUS fundo a fundo), educação (Fundeb, PNAE) e assistência social (FNAS/SUAS, não localizado)",
+          graficos: [
+            {
+              titulo: "Repasses por área",
+              tipo: "barras",
+              larga: true,
+              series: [
+                { r: ["federativo", "3.1"], nome: "Saúde (SUS, líquido de glosas)" },
+                { r: ["despesas", "11.5"], nome: "Educação (complementação ao Fundeb)" },
+                { r: ["federativo", "5"], nome: "Educação (PNAE)" },
+              ],
+              nota: "Escalas muito diferentes entre áreas. Assistência social (FNAS/SUAS) não localizada para os 4 anos.",
+            },
+            {
+              titulo: "SUS: repasse bruto × líquido",
+              sub: "Líquido = bruto − descontos/glosas",
+              tipo: "linhas",
+              series: [
+                { r: ["federativo", "3"], nome: "Bruto" },
+                { r: ["federativo", "3.1"], nome: "Líquido" },
+              ],
+            },
+          ],
+        },
+        { titulo: "Tabela completa", tabela: ["federativo"] },
       ],
     },
 
@@ -522,11 +627,82 @@
     },
 
     {
+      id: "seguranca_pub",
+      menu: "Segurança",
+      titulo: "Segurança pública: orçamento e resultados",
+      desc: "Do orçamento da função Segurança Pública às estatísticas de violência: mortes violentas, letalidade policial e outros crimes, com base no Anuário Brasileiro de Segurança Pública (FBSP).",
+      trilha: ["Orçamento", "Taxas (por 100 mil hab.)", "Números absolutos", "Letalidade policial"],
+      niveis: [
+        {
+          titulo: "Panorama (taxas por 100 mil habitantes)",
+          kpis: [
+            { r: ["seguranca", "29–30", "Pago"], nome: "Segurança pública (função 06) – pago", link: "social" },
+            { r: ["seg_dados", "1.1"], nome: "Mortes Violentas Intencionais (MVI) – taxa" },
+            { r: ["seg_dados", "2.1"], nome: "Homicídio doloso – taxa" },
+            { r: ["seg_dados", "8.1"], nome: "Roubos – taxa" },
+          ],
+          graficos: [
+            {
+              titulo: "Violência letal e sexual (taxa por 100 mil hab.)",
+              tipo: "linhas",
+              series: [
+                { r: ["seg_dados", "1.1"], nome: "MVI" },
+                { r: ["seg_dados", "2.1"], nome: "Homicídio doloso" },
+                { r: ["seg_dados", "9.1"], nome: "Estupro" },
+              ],
+              nota: "MVI = homicídio doloso + feminicídio + latrocínio + lesão corporal seguida de morte + mortes por intervenção policial (série revisada pelo FBSP).",
+            },
+            {
+              titulo: "Roubos",
+              sub: "Taxa por 100 mil hab.",
+              tipo: "barras",
+              series: [{ r: ["seg_dados", "8.1"], nome: "Roubos" }],
+              nota: "Escala bem maior que os crimes letais — por isso em gráfico à parte.",
+            },
+          ],
+        },
+        {
+          titulo: "Números absolutos e letalidade policial",
+          kpis: [
+            { r: ["seg_dados", "1"], nome: "MVI – nº absoluto" },
+            { r: ["seg_dados", "4"], nome: "Latrocínio – nº absoluto" },
+            { r: ["seg_dados", "5"], nome: "Mortes por intervenção policial (MDIP)" },
+            { r: ["seg_dados", "6"], nome: "Policiais civis e militares mortos" },
+          ],
+          graficos: [
+            {
+              titulo: "Homicídio doloso e estupro",
+              sub: "Registros, número absoluto",
+              tipo: "linhas",
+              series: [
+                { r: ["seg_dados", "2"], nome: "Homicídio doloso" },
+                { r: ["seg_dados", "9"], nome: "Estupro" },
+              ],
+              nota: "Estupro: a partir de 2019 a categoria combina \"estupro\" e \"estupro de vulnerável\".",
+            },
+            {
+              titulo: "Feminicídio, latrocínio e letalidade policial",
+              sub: "Número absoluto",
+              tipo: "barras",
+              series: [
+                { r: ["seg_dados", "3"], nome: "Feminicídio" },
+                { r: ["seg_dados", "4"], nome: "Latrocínio" },
+                { r: ["seg_dados", "5"], nome: "MDIP (letalidade policial)" },
+              ],
+              nota: "Feminicídio subiu mesmo com a MVI total em queda — não são a mesma coisa: um é um dos componentes do total.",
+            },
+          ],
+        },
+        { titulo: "Tabela completa", tabela: ["seg_dados"] },
+      ],
+    },
+
+    {
       id: "educacao",
       menu: "Educação",
       titulo: "Educação: todos os gastos federais em um só lugar",
-      desc: "Consolida os dados de educação espalhados pelas demais áreas: função Educação do orçamento, Fundeb, alimentação escolar, Pé-de-Meia, assistência estudantil, Fies e ProUni.",
-      trilha: ["Função Educação", "Educação básica", "Ensino superior e técnico", "Crédito e renúncias"],
+      desc: "Consolida os dados de educação espalhados pelas demais áreas: função Educação do orçamento, Fundeb, alimentação escolar, Pé-de-Meia, assistência estudantil, Fies e ProUni — e, além do dinheiro, matrículas, rendimento escolar, Enem e Sisu.",
+      trilha: ["Função Educação", "Educação básica", "Ensino superior e técnico", "Crédito e renúncias", "Matrículas", "Enem e Sisu"],
       niveis: [
         {
           titulo: "Gasto federal em educação",
@@ -615,6 +791,69 @@
           ],
         },
         {
+          titulo: "Matrículas e rede escolar",
+          desc: "Números, não valores: Censo Escolar e Censo da Educação Superior (Inep)",
+          kpis: [
+            { r: ["edu_matriculas", "1"], nome: "Matrículas – educação básica" },
+            { r: ["edu_matriculas", "2"], nome: "Número de escolas – educação básica" },
+            { r: ["edu_matriculas", "6"], nome: "Matrículas – graduação" },
+            { r: ["edu_matriculas", "3"], nome: "Taxa de aprovação – fundamental, rede pública" },
+          ],
+          graficos: [
+            {
+              titulo: "Taxas de rendimento escolar",
+              sub: "Fundamental/médio, rede pública",
+              tipo: "linhas",
+              series: [
+                { r: ["edu_matriculas", "3"], nome: "Aprovação (fundamental)" },
+                { r: ["edu_matriculas", "4"], nome: "Reprovação (fundamental)" },
+                { r: ["edu_matriculas", "5"], nome: "Abandono (médio)" },
+              ],
+              nota: "Etapa/recorte varia por ano conforme o que foi divulgado pelo Inep — ver observações na tabela.",
+            },
+            {
+              titulo: "Ensino superior: rede pública e EAD",
+              sub: "Participação nas matrículas de graduação",
+              tipo: "linhas",
+              series: [
+                { r: ["edu_matriculas", "6.1"], nome: "Rede pública" },
+                { r: ["edu_matriculas", "6.2"], nome: "Ensino a distância (EAD)" },
+              ],
+            },
+          ],
+        },
+        {
+          titulo: "Enem e Sisu",
+          desc: "Inscritos, participantes e vagas — números, não valores",
+          kpis: [
+            { r: ["enem_sisu", "1"], nome: "Enem – inscritos" },
+            { r: ["enem_sisu", "3"], nome: "Enem – taxa de abstenção" },
+            { r: ["enem_sisu", "4"], nome: "Sisu – inscrições" },
+            { r: ["enem_sisu", "5"], nome: "Sisu – vagas ofertadas" },
+          ],
+          graficos: [
+            {
+              titulo: "Enem: inscritos e presentes",
+              tipo: "barras",
+              series: [
+                { r: ["enem_sisu", "1"], nome: "Inscritos" },
+                { r: ["enem_sisu", "2"], nome: "Presentes" },
+              ],
+              nota: "2016 exclui treineiros (PPL); 2022/2025: número de presentes não localizado (só % de presença).",
+            },
+            {
+              titulo: "Sisu: vagas e convocados",
+              sub: "1ª edição do ano",
+              tipo: "barras",
+              series: [
+                { r: ["enem_sisu", "5"], nome: "Vagas ofertadas" },
+                { r: ["enem_sisu", "6"], nome: "Convocados/matriculados" },
+              ],
+              nota: "Convocados/matriculados só localizado para 2025.",
+            },
+          ],
+        },
+        {
           titulo: "Tabela completa",
           tabela: [{
             chave: "educacao",
@@ -626,7 +865,7 @@
               ["afirmativas", "PA.3"], ["afirmativas", "PA.4"], ["afirmativas", "PA.5"],
               ["afirmativas", "PA.11"], ["afirmativas", "PA.11.1"], ["afirmativas", "PA.12"],
             ],
-          }],
+          }, "edu_matriculas", "enem_sisu"],
         },
       ],
     },
@@ -726,6 +965,74 @@
           ],
         },
         { titulo: "Tabela completa", tabela: ["afirmativas"] },
+      ],
+    },
+
+    {
+      id: "corrupcao",
+      menu: "Corrupção",
+      titulo: "Corrupção: percepção e apuração",
+      desc: "Diferente das demais áreas deste site, não existe uma única fonte oficial com série anual comparável de corrupção para os quatro anos — os indicadores abaixo vêm de fontes distintas (Transparency International, Datafolha, CGU, reportagens com dado via Lei de Acesso à Informação), e vários anos ficam sem dado apesar da busca. Ver a aba Fontes para o detalhe de cada busca.",
+      trilha: ["Percepção (CPI, Datafolha)", "Apuração (operações, prisões)"],
+      niveis: [
+        {
+          titulo: "Percepção: especialistas e população",
+          kpis: [
+            { r: ["corrupcao", "1"], nome: "Índice de Percepção de Corrupção (CPI)" },
+            { r: ["corrupcao", "1.1"], nome: "CPI — posição no ranking mundial" },
+            { r: ["corrupcao", "2"], nome: "Corrupção como principal problema do Brasil (Datafolha)" },
+          ],
+          graficos: [
+            {
+              titulo: "Índice de Percepção de Corrupção",
+              sub: "Transparency International · 0 (muito corrupto) a 100 (muito íntegro)",
+              tipo: "barras",
+              series: [{ r: ["corrupcao", "1"], nome: "CPI" }],
+              nota: "2016 e 2022 não localizados com segurança — fontes secundárias divergiram sem confirmação no relatório original.",
+            },
+            {
+              titulo: "Corrupção como principal problema do país",
+              sub: "% de entrevistados, pesquisa Datafolha",
+              tipo: "barras",
+              series: [{ r: ["corrupcao", "2"], nome: "Corrupção (Datafolha)" }],
+              nota: "2019 não localizado com um valor único e confiável.",
+            },
+          ],
+        },
+        {
+          titulo: "Apuração: operações e prisões",
+          desc: "Mede esforço/resultado de investigação, não o nível real de corrupção — depende de prioridade política e de regras de prisão vigentes em cada momento",
+          kpis: [
+            { r: ["corrupcao", "3"], nome: "Operações de combate à corrupção (CGU)" },
+            { r: ["corrupcao", "4"], nome: "Prisões em operações da PF por corrupção" },
+          ],
+          graficos: [
+            {
+              titulo: "Operações e prisões por corrupção",
+              tipo: "barras",
+              larga: true,
+              series: [
+                { r: ["corrupcao", "3"], nome: "Operações deflagradas (CGU)" },
+                { r: ["corrupcao", "4"], nome: "Prisões (PF)" },
+              ],
+              nota: "Série muito incompleta: cada indicador só tem 2 dos 4 anos. A queda de prisões (421→42) ocorreu entre 2019 e 2022, ainda no governo Bolsonaro.",
+            },
+          ],
+        },
+        { titulo: "Tabela completa", tabela: ["corrupcao"] },
+      ],
+    },
+
+    {
+      id: "fato_ou_fake",
+      menu: "Fato ou Fake",
+      titulo: "Fato ou Fake",
+      desc: "Não é uma checagem própria deste site: é uma curadoria do que agências de checagem já estabelecidas (Aos Fatos, Agência Lupa, Comprova) apuraram sobre política, economia, o que os candidatos declaram e boatos que circulam nas redes — incluindo urnas eletrônicas. Eleição em curso (1º turno em 04/10/2026): cada item tem data e link para a checagem original; não damos veredito próprio sobre alegação que ninguém checou ainda. Atualizado em 22/09/2026.",
+      niveis: [
+        { titulo: "Urnas eletrônicas", desc: "O tema mais recorrente de desinformação eleitoral no Brasil desde 2018", html: "fato_urnas" },
+        { titulo: "O que Lula declara", desc: "Checagens de entrevistas e falas de campanha do candidato à reeleição", html: "fato_lula" },
+        { titulo: "O que Flávio Bolsonaro declara", desc: "Checagens de entrevistas e falas de campanha do candidato ao Planalto", html: "fato_flavio" },
+        { titulo: "Boatos e campanhas virais nas redes", desc: "Vídeos fora de contexto, teorias da conspiração e simulações apresentadas como reais", html: "fato_viral" },
       ],
     },
 

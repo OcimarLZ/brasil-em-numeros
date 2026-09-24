@@ -121,6 +121,22 @@
       licao: "Investimento precisa de carteira plurianual, avaliação independente e proteção contra cortes de curto prazo.",
     },
 
+    federativo: {
+      bol: [
+        { v: "sim", frase: "O FPE e o FPM cresceram muito nos últimos anos.", dado: "FPE + FPM somaram R$ 362 bi reais em 2025 (2,84% do PIB), ante R$ 232 bi (2,39% do PIB) em 2016 — alta real de 56%, beneficiando todos os estados e municípios, governados por qualquer partido." },
+      ],
+      pt: [
+        { v: "sim", frase: "O governo Lula fortaleceu o Fundeb e o SUS fundo a fundo.", dado: "A complementação ao Fundeb foi de R$ 32,9 bi (2022) para R$ 59,7 bi reais (2025, +82%) e o repasse líquido do SUS de R$ 111,2 bi para R$ 164,7 bi (+48%)." },
+        { v: "nao", frase: "O pacto federativo brasileiro é transparente e bem monitorado.", dado: "Não foi possível localizar uma série consolidada do total de transferências da União a estados e municípios, nem os repasses do FNAS/SUAS — nenhuma fonte oficial consultada trouxe esses números." },
+      ],
+      espelho: [
+        { pais: "Alemanha", txt: "Sistema de equalização fiscal entre estados (Länderfinanzausgleich) constitucionalmente obrigatório e transparente." },
+        { pais: "Nórdicos", txt: "Transferências a municípios ligadas a fórmulas públicas de necessidade (idade da população, densidade), não a negociação política caso a caso." },
+        { pais: "Coreia do Sul", txt: "Sistema de transferências locais com auditoria centralizada e metas de desempenho dos governos locais." },
+      ],
+      licao: "Fórmulas de repasse estáveis e públicas, com dados completos e auditáveis — o Brasil ainda não tem isso para todas as áreas do pacto federativo.",
+    },
+
     social: {
       bol: [
         { v: "nao", frase: "O SUS é um poço de desperdício.", dado: "A União gasta 1,84% do PIB em saúde (todas as esferas, ~4%), contra ~8%–9% nos nórdicos. Há ineficiências, mas o SUS é subfinanciado frente às referências." },
@@ -138,16 +154,36 @@
       licao: "Serviços universais de qualidade e previdência ajustada à demografia: as duas agendas se complementam.",
     },
 
+    seguranca_pub: {
+      bol: [
+        { v: "parte", frase: "A violência só cai onde a polícia age com mão firme, sem amarras.", dado: "MVI, homicídio doloso, latrocínio e roubo caíram nos quatro anos, em governos diferentes. Mas a letalidade policial (MDIP) subiu 56% no mesmo período — mais força policial não impediu, e coincidiu com mais mortes causadas pela própria polícia." },
+        { v: "nao", frase: "Estatuto do Desarmamento e políticas de controle de armas não reduzem a violência.", dado: "Esta planilha não tem dados sobre posse de armas para avaliar essa afirmação — nem a favor, nem contra. Fica como \"não é possível checar com estes dados\"." },
+      ],
+      pt: [
+        { v: "sim", frase: "A violência letal caiu para o menor nível da série.", dado: "A taxa de MVI caiu de 30,2 (2016) para 19,1 por 100 mil habitantes (2025), o menor valor dos quatro anos, com queda contínua." },
+        { v: "nao", frase: "A segurança pública é só uma pauta conservadora; a esquerda não tem agenda própria.", dado: "Os dados mostram uma agenda distinta possível: feminicídio (+153%) e letalidade policial (+56%) sobem exatamente onde políticas de proteção à mulher e controle do uso da força fariam diferença — pauta historicamente identificada com a esquerda." },
+      ],
+      espelho: [
+        { pais: "Todos os 6 países", txt: "Taxas de homicídio muito abaixo da brasileira (tipicamente 0,5–1,5 por 100 mil habitantes, contra 15,4 no Brasil em 2025)." },
+        { pais: "Alemanha / Finlândia", txt: "Controle rígido de armas de fogo e baixíssima taxa de homicídio por arma de fogo." },
+        { pais: "Coreia do Sul", txt: "Uma das menores taxas de criminalidade violenta do mundo, associada a policiamento comunitário e alta coesão social." },
+        { pais: "Noruega", txt: "Sistema penal focado em reintegração (penas mais curtas, foco em reabilitação) com uma das menores taxas de reincidência do mundo." },
+      ],
+      licao: "Nos países de referência a segurança combina Estado presente, dados públicos completos e políticas específicas por tipo de violência — não apenas \"mais repressão\" ou \"menos repressão\" em bloco.",
+    },
+
     educacao: {
       bol: [
         { v: "parte", frase: "O problema da educação não é dinheiro, é gestão.", dado: "Em % do PIB (~5,5%, todas as esferas) o Brasil gasta perto da média da OCDE e dos países de referência. Mas por aluno o gasto é uma fração do deles, e a União cortou 15% reais entre 2016 e 2022. As duas coisas importam." },
         { v: "parte", frase: "A queda na educação entre 2019 e 2022 foi por causa da pandemia, não de cortes.", dado: "A queda real começou antes: de R$ 147,6 bi (2016) para R$ 131,5 bi (2019), e continuou até R$ 125,5 bi (2022). A pandemia não explica a tendência." },
         { v: "parte", frase: "O governo Bolsonaro fortaleceu a educação básica com o novo Fundeb.", dado: "A complementação subiu de 0,21% para 0,33% do PIB entre 2019 e 2022. Mas o novo Fundeb (EC 108/2020) foi aprovado por iniciativa do Congresso, que ampliou a proposta inicial do governo." },
+        { v: "parte", frase: "O ensino a distância (EAD) democratizou o acesso ao ensino superior.", dado: "A participação do EAD nas matrículas de graduação saltou de 18,6% (2016) para 50,7% (2025), ampliando o acesso numérico. Mas esta planilha não tem dados de evasão ou qualidade do EAD para confirmar se o acesso maior significa formação equivalente." },
       ],
       pt: [
         { v: "sim", frase: "O governo Lula recompôs o orçamento da educação.", dado: "A função Educação paga subiu 39% reais de 2022 a 2025 (R$ 125,5 bi → R$ 174,6 bi), e a Bolsa Permanência +168%." },
         { v: "parte", frase: "O Brasil investe pouco em educação.", dado: "Procede por aluno e na União até 2022. Mas em % do PIB, somando todas as esferas (~5,5%), o Brasil está perto da média da OCDE (~5%). O maior problema é aprendizagem: 379 pontos no PISA de matemática contra 472 na OCDE." },
-        { v: "parte", frase: "O Pé-de-Meia está resolvendo a evasão no ensino médio.", dado: "São R$ 13 bi previstos em 2025, pagos por fundo fora do orçamento e questionados pelo TCU. Os dados desta planilha não medem a evasão; o efeito ainda precisa ser avaliado." },
+        { v: "parte", frase: "O Pé-de-Meia está resolvendo a evasão no ensino médio.", dado: "São R$ 13 bi previstos em 2025, pagos por fundo fora do orçamento e questionados pelo TCU. Os dados desta planilha não medem a evasão; o efeito ainda precisa de avaliação." },
+        { v: "parte", frase: "O Sisu ampliou fortemente o acesso a vagas públicas.", dado: "As vagas ofertadas pelo Sisu cresceram de 228 mil (2016) para 261,8 mil (2025) — alta de 15% em 9 anos, real mas modesta, não um salto." },
       ],
       espelho: [
         { pais: "Finlândia", txt: "Professores com mestrado, carreira disputada e autonomia; gasto público em educação de ~5,5%–6% do PIB." },
@@ -173,6 +209,23 @@
         { pais: "Coreia do Sul", txt: "Rede de proteção ampliada nas últimas décadas junto com a formalização do trabalho." },
       ],
       licao: "Transferências focalizadas, serviços universais e ativação para o emprego, dentro do orçamento e com fonte permanente.",
+    },
+
+    corrupcao: {
+      bol: [
+        { v: "nao", frase: "O governo Lula reduziu o combate à corrupção.", dado: "A queda mais forte que os dados mostram — prisões por corrupção caindo de 421 para 42 — ocorreu entre 2019 e 2022, dentro do próprio governo Bolsonaro. As operações da CGU seguiram baixas em 2023 (37) e 2024 (33) sob Lula, mas como continuação de uma tendência que já vinha de antes, não como um recuo iniciado por ele." },
+        { v: "nao", frase: "O Brasil piorou no ranking internacional de corrupção com Lula.", dado: "O CPI (Transparency International) ficou em exatamente 35 pontos tanto em 2019 (governo Bolsonaro) quanto em 2025 (governo Lula) — nenhuma piora foi registrada pelo índice internacional entre os dois pontos medidos." },
+      ],
+      pt: [
+        { v: "parte", frase: "A percepção de corrupção no Brasil melhorou muito nos últimos anos.", dado: "Procede para a preocupação popular (Datafolha: de 32% para 5%–8%), mas o índice internacional de especialistas (CPI) ficou estagnado em 35 pontos entre 2019 e 2025 — a queda parece refletir menos prioridade do tema no debate público, não necessariamente menos corrupção percebida por quem avalia de fora." },
+        { v: "parte", frase: "Depois da Lava Jato, o combate à corrupção só piorou.", dado: "As prisões por corrupção já vinham caindo antes do fim da Lava Jato (421 em 2019 para 42 em 2022, ainda no governo Bolsonaro) e as operações da CGU seguiram baixas em 2023–2024. Mas o índice internacional de percepção (CPI) não registrou piora: ficou nos mesmos 35 pontos em 2019 e 2025." },
+      ],
+      espelho: [
+        { pais: "Dinamarca / Finlândia / Noruega", txt: "Estão entre os países mais bem avaliados do mundo no CPI há anos, com pontuação bem acima de 80 (o Brasil está em 35) — resultado de décadas de transparência e imprensa livre, não só de operações policiais pontuais." },
+        { pais: "Alemanha", txt: "Mantém pontuação alta e estável no CPI, apoiada em um sistema de compliance corporativo obrigatório reforçado após escândalos como o da Siemens nos anos 2000." },
+        { pais: "Coreia do Sul", txt: "Melhorou de forma constante seu índice de percepção de corrupção nas últimas décadas, com leis de transparência rígidas e punição de altos executivos e ex-presidentes." },
+      ],
+      licao: "Nos países mais bem avaliados, o combate à corrupção não depende de operações midiáticas pontuais: é sustentado por transparência contínua, imprensa livre e instituições estáveis — o que ajuda a explicar por que o CPI do Brasil não se move mesmo quando o número de operações e prisões varia bastante de um governo para outro.",
     },
 
     fomento: {
